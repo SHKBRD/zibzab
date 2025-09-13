@@ -1,9 +1,9 @@
 extends Camera3D
 class_name WorldCamera
 
-@export var camera_acceleration: float = 40.0
-@export var camera_vel_cap: float = 20.0
-@export var camera_move_friction: float = 0.2
+@export var camera_acceleration: float = 300
+@export var camera_vel_cap: float = 30.0
+@export var camera_move_friction: float = 0.001
 
 
 var camVelocity: Vector2 = Vector2(0, 0)
@@ -33,4 +33,4 @@ func process_camera_movement(delta: float) -> void:
 func _process(delta: float) -> void:
 	camera_input(delta)
 	process_camera_movement(delta)
-	print(camVelocity)
+	# print(camVelocity)

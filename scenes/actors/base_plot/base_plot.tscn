@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dogm3jw7h567q"]
+[gd_scene load_steps=6 format=3 uid="uid://dogm3jw7h567q"]
 
 [ext_resource type="PackedScene" uid="uid://b4hfbgv8y14gq" path="res://assets/Zib/BasePlot.blend" id="1_rrv6o"]
 [ext_resource type="Script" uid="uid://3h7s2jlc4f7r" path="res://scenes/actors/base_plot/base_plot.gd" id="2_oemfn"]
@@ -11,8 +11,10 @@ albedo_color = Color(0.941176, 0.941176, 0.941176, 1)
 shading_mode = 0
 albedo_color = Color(0.5, 0.5, 0.5, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_oemfn"]
+size = Vector3(16, 1.5, 16)
+
 [node name="BasePlot" instance=ExtResource("1_rrv6o")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 script = ExtResource("2_oemfn")
 
 [node name="Plot" parent="." index="0"]
@@ -21,3 +23,12 @@ surface_material_override/1 = SubResource("StandardMaterial3D_pfcvo")
 
 [node name="BuildingType" type="Marker3D" parent="." index="1"]
 gizmo_extents = 1.0
+
+[node name="PlotCollision" type="Area3D" parent="." index="2"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlotCollision" index="0"]
+shape = SubResource("BoxShape3D_oemfn")
+
+[connection signal="input_event" from="PlotCollision" to="." method="_on_plot_collision_input_event"]

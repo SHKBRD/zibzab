@@ -35,7 +35,7 @@ mesh = SubResource("PlaneMesh_cih2l")
 surface_material_override/0 = ExtResource("1_wdn8f")
 
 [node name="WorldCamera" type="Camera3D" parent="."]
-transform = Transform3D(-1, -5.61943e-08, 6.69697e-08, 0, 0.766044, 0.642788, -8.74228e-08, 0.642788, -0.766044, 0, 20.9655, -26.293)
+transform = Transform3D(-1, 6.18172e-08, -6.18172e-08, 0, 0.707107, 0.707107, 8.74228e-08, 0.707107, -0.707107, 0, 20.965, -22.678)
 script = ExtResource("2_l4v6i")
 
 [node name="Plots" type="Node3D" parent="."]
@@ -43,4 +43,3 @@ script = ExtResource("2_mh22i")
 
 [node name="BasePlot" parent="Plots" instance=ExtResource("2_bn180")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.141158, 0.876557, 0.0159931)
-visible = false
