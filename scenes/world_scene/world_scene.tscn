@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://c6b2yfgwdfgvv"]
+
+[ext_resource type="Material" uid="uid://xnpqndxhsn5" path="res://scenes/world_scene/shaders/water.tres" id="1_wdn8f"]
+[ext_resource type="PackedScene" uid="uid://dogm3jw7h567q" path="res://scenes/actors/base_plot/base_plot.tscn" id="2_bn180"]
+[ext_resource type="Script" uid="uid://dtq3gs0bkn117" path="res://scenes/world_scene/scripts/world_camera.gd" id="2_l4v6i"]
+[ext_resource type="Script" uid="uid://rwqr8dol12av" path="res://scenes/world_scene/scripts/plot_setup.gd" id="2_mh22i"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bn180"]
+sky_top_color = Color(0, 1, 1, 1)
+sky_horizon_color = Color(1, 1, 1, 1)
+sky_curve = 0.1
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(1, 1, 1, 1)
+ground_curve = 0.00861079
+
+[sub_resource type="Sky" id="Sky_mh22i"]
+sky_material = SubResource("ProceduralSkyMaterial_bn180")
+
+[sub_resource type="Environment" id="Environment_l4v6i"]
+background_mode = 2
+sky = SubResource("Sky_mh22i")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cih2l"]
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_l4v6i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2576.82, 0, 0, 0, 1, 0, 0, 0, 2576.82, 0, 0, 0)
+mesh = SubResource("PlaneMesh_cih2l")
+surface_material_override/0 = ExtResource("1_wdn8f")
+
+[node name="WorldCamera" type="Camera3D" parent="."]
+transform = Transform3D(-1, -5.61943e-08, 6.69697e-08, 0, 0.766044, 0.642788, -8.74228e-08, 0.642788, -0.766044, 0, 20.9655, -26.293)
+script = ExtResource("2_l4v6i")
+
+[node name="Plots" type="Node3D" parent="."]
+script = ExtResource("2_mh22i")
+
+[node name="BasePlot" parent="Plots" instance=ExtResource("2_bn180")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.141158, 0.876557, 0.0159931)
+visible = false

@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dogm3jw7h567q"]
+
+[ext_resource type="PackedScene" uid="uid://b4hfbgv8y14gq" path="res://assets/Zib/BasePlot.blend" id="1_rrv6o"]
+[ext_resource type="Script" uid="uid://3h7s2jlc4f7r" path="res://scenes/actors/base_plot/base_plot.gd" id="2_oemfn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oemfn"]
+shading_mode = 0
+albedo_color = Color(0.941176, 0.941176, 0.941176, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pfcvo"]
+shading_mode = 0
+albedo_color = Color(0.5, 0.5, 0.5, 1)
+
+[node name="BasePlot" instance=ExtResource("1_rrv6o")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+script = ExtResource("2_oemfn")
+
+[node name="Plot" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_oemfn")
+surface_material_override/1 = SubResource("StandardMaterial3D_pfcvo")
+
+[node name="BuildingType" type="Marker3D" parent="." index="1"]
+gizmo_extents = 1.0

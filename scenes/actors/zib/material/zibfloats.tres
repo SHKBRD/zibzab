@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://ot0yo2qbo2q2"]
+
+[ext_resource type="Texture2D" uid="uid://gy1vtof5ct45" path="res://assets/Zib/ZibFloat.png" id="1_2lftu"]
+[ext_resource type="Shader" uid="uid://cbokfij31dp2e" path="res://scenes/actors/zib/shader/zibfloats.gdshader" id="1_s4qbs"]
+[ext_resource type="Texture2D" uid="uid://daitaiycw33ld" path="res://assets/Zib/ZibFloatGradient.png" id="2_0k1jj"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_s4qbs")
+shader_parameter/float_texture = ExtResource("1_2lftu")
+shader_parameter/alpha_texture = ExtResource("2_0k1jj")
