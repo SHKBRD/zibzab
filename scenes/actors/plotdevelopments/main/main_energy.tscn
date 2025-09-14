@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvftq34crw7sf"]
+
+[ext_resource type="PackedScene" uid="uid://cr0kykin3bip2" path="res://assets/plot_developments/MainEnergyIsland.blend" id="1_v78eq"]
+[ext_resource type="Script" uid="uid://d0a8w3n8k87ea" path="res://scenes/actors/plotdevelopments/main/main_energy.gd" id="2_1mwqn"]
+[ext_resource type="Material" uid="uid://cocc5ouw71hc5" path="res://shaders/outlineshader.tres" id="3_v78eq"]
+
+[node name="MainEnergyIsland" instance=ExtResource("1_v78eq")]
+script = ExtResource("2_1mwqn")
+
+[node name="Sphere" parent="." index="0"]
+surface_material_override/1 = ExtResource("3_v78eq")
+
+[node name="Cube" parent="." index="1"]
+surface_material_override/2 = ExtResource("3_v78eq")
+
+[node name="Cylinder" parent="." index="2"]
+surface_material_override/1 = ExtResource("3_v78eq")

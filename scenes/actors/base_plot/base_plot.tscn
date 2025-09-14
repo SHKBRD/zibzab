@@ -1,15 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://dogm3jw7h567q"]
 
-[ext_resource type="PackedScene" uid="uid://b4hfbgv8y14gq" path="res://assets/Zib/BasePlot.blend" id="1_rrv6o"]
+[ext_resource type="PackedScene" uid="uid://b4hfbgv8y14gq" path="res://assets/plot_developments/BasePlot.blend" id="1_rrv6o"]
 [ext_resource type="Script" uid="uid://3h7s2jlc4f7r" path="res://scenes/actors/base_plot/base_plot.gd" id="2_oemfn"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oemfn"]
-shading_mode = 0
-albedo_color = Color(0.941176, 0.941176, 0.941176, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pfcvo"]
-shading_mode = 0
-albedo_color = Color(0.5, 0.5, 0.5, 1)
+[ext_resource type="PackedScene" uid="uid://b434msy1r6nt3" path="res://scenes/actors/base_plot/developpicker/purchase_picker.tscn" id="3_pfcvo"]
+[ext_resource type="Material" uid="uid://cocc5ouw71hc5" path="res://shaders/outlineshader.tres" id="4_7qukm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oemfn"]
 size = Vector3(16, 1.5, 16)
@@ -17,18 +11,25 @@ size = Vector3(16, 1.5, 16)
 [node name="BasePlot" instance=ExtResource("1_rrv6o")]
 script = ExtResource("2_oemfn")
 
-[node name="Plot" parent="." index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_oemfn")
-surface_material_override/1 = SubResource("StandardMaterial3D_pfcvo")
-
-[node name="BuildingType" type="Marker3D" parent="." index="1"]
+[node name="BuildingDevelopment" type="Marker3D" parent="." index="0"]
+unique_name_in_owner = true
 gizmo_extents = 1.0
 
-[node name="PlotCollision" type="Area3D" parent="." index="2"]
+[node name="PlotCollision" type="Area3D" parent="." index="1"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlotCollision" index="0"]
 shape = SubResource("BoxShape3D_oemfn")
 
+[node name="PurchasePicker" parent="." index="3" instance=ExtResource("3_pfcvo")]
+unique_name_in_owner = true
+visible = false
+
+[node name="PlotOutline" parent="." index="4"]
+unique_name_in_owner = true
+visible = false
+surface_material_override/0 = ExtResource("4_7qukm")
+
 [connection signal="input_event" from="PlotCollision" to="." method="_on_plot_collision_input_event"]
+[connection signal="option_chosen" from="PurchasePicker" to="." method="_on_purchase_picker_option_chosen"]

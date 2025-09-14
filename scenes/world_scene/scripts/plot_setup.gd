@@ -1,8 +1,20 @@
 @tool
 extends Node3D
+class_name PlotSpace
 
 var rows: int = 17
 var cols: int = 17
+
+var focusPlot: Plot = null:
+	set(value):
+		if focusPlot:
+			focusPlot.defocus()
+			
+		if focusPlot != value:
+			focusPlot = value
+			return
+		focusPlot = null
+
 
 func populate_plots():
 	for row: int in rows:
@@ -12,10 +24,19 @@ func populate_plots():
 			newPlot.gridX = col
 			newPlot.gridY = row
 			newPlot.name = "%d,%d" % [col, row]
+			newPlot.gotFocused.connect(on_plot_focused)
 			add_child(newPlot)
 	var centerPlot: Plot = get_node("%d,%d" % [ceil(cols/2), ceil(rows/2)]) as Plot
-	centerPlot.raise(Plot.Availability.BOUGHT)
-	
+	centerPlot.develop(Development.DevelopmentType.MAIN)
+
 
 func _ready() -> void:
 	populate_plots()
+
+
+func on_plot_focused(plot: Plot) -> void:
+	# if focusplot is set to the plot it already has, this makes focusPlot null
+	focusPlot = plot
+	
+	if focusPlot != null:
+		focusPlot.focus()

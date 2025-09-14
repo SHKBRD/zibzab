@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b4hfbgv8y14gq"
-path="res://.godot/imported/BasePlot.blend-fdf23e2b37d0b228fcc0e7422417a581.scn"
+uid="uid://cr0kykin3bip2"
+path="res://.godot/imported/MainEnergyIsland.blend-290cec9e92921d12f6a6eddbebee354f.scn"
 
 [deps]
 
-source_file="res://assets/Zib/BasePlot.blend"
-dest_files=["res://.godot/imported/BasePlot.blend-fdf23e2b37d0b228fcc0e7422417a581.scn"]
+source_file="res://assets/plot_developments/MainEnergyIsland.blend"
+dest_files=["res://.godot/imported/MainEnergyIsland.blend-290cec9e92921d12f6a6eddbebee354f.scn"]
 
 [params]
 

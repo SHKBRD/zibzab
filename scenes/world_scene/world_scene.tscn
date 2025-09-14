@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6b2yfgwdfgvv"]
+[gd_scene load_steps=10 format=3 uid="uid://c6b2yfgwdfgvv"]
 
+[ext_resource type="Script" uid="uid://ci235s1ttho21" path="res://scenes/world_scene/world_scene.gd" id="1_cih2l"]
 [ext_resource type="Material" uid="uid://xnpqndxhsn5" path="res://scenes/world_scene/shaders/water.tres" id="1_wdn8f"]
 [ext_resource type="PackedScene" uid="uid://dogm3jw7h567q" path="res://scenes/actors/base_plot/base_plot.tscn" id="2_bn180"]
 [ext_resource type="Script" uid="uid://dtq3gs0bkn117" path="res://scenes/world_scene/scripts/world_camera.gd" id="2_l4v6i"]
@@ -25,6 +26,7 @@ glow_enabled = true
 [sub_resource type="PlaneMesh" id="PlaneMesh_cih2l"]
 
 [node name="World" type="Node3D"]
+script = ExtResource("1_cih2l")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_l4v6i")

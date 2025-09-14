@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://b434msy1r6nt3"]
+
+[ext_resource type="Material" uid="uid://bhc7ccj2cmnml" path="res://shaders/gray.tres" id="1_icfd5"]
+[ext_resource type="Script" uid="uid://bqkftd8ig00e8" path="res://scenes/actors/base_plot/developpicker/purchase_picker.gd" id="1_oekk1"]
+[ext_resource type="PackedScene" uid="uid://d34o7awnqlgr3" path="res://scenes/actors/base_plot/developpicker/purchase_picker_option.tscn" id="2_icfd5"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_72r1p"]
+inner_radius = 6.0
+outer_radius = 7.0
+
+[node name="PurchasePicker" type="Node3D"]
+script = ExtResource("1_oekk1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.804829, 0)
+mesh = SubResource("TorusMesh_72r1p")
+surface_material_override/0 = ExtResource("1_icfd5")
+
+[node name="DevelopmentOptions" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Sprite3D" parent="DevelopmentOptions" instance=ExtResource("2_icfd5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.804829, -6.5)
+developmentType = 2
+
+[node name="Sprite3D5" parent="DevelopmentOptions" instance=ExtResource("2_icfd5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.804829, 6.5)
+modulate = Color(0.833333, 0, 1, 1)
+developmentType = 3
+
+[node name="Sprite3D6" parent="DevelopmentOptions" instance=ExtResource("2_icfd5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0.804829, 0)
+modulate = Color(0.296514, 0.627921, 0, 1)
+developmentType = 4
+
+[node name="Sprite3D7" parent="DevelopmentOptions" instance=ExtResource("2_icfd5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0.804829, 0)
+modulate = Color(0, 0.183333, 1, 1)
+developmentType = 5

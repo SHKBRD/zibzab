@@ -1,6 +1,8 @@
 extends Node3D
 class_name Plot
 
+signal gotFocused(plot: Plot)
+
 var gridX: int
 var gridY: int
 
@@ -11,18 +13,14 @@ enum Availability {
 }
 var availabilityState: Availability = Availability.SUNK
 
-enum SpaceType {
-	NONE,
-	MAIN,
-	TOWER,
-	CORRAL,
-	ENERGY
-}
-var spaceType: SpaceType = SpaceType.NONE
-
+var spaceType: Development.DevelopmentType = Development.DevelopmentType.NONE
 
 func _ready() -> void:
-	scale = Vector3(0.001, 0.001, 0.001)
+	var smallScale: Vector3 = Vector3(0.001, 0.001, 0.001)
+	scale = smallScale
+	%PurchasePicker.scale = smallScale
+	%PlotOutline.scale = smallScale
+	
 	hide()
 	
 
@@ -44,15 +42,44 @@ func raise(type: Availability) -> void:
 					if focusPlot != null and focusPlot.availabilityState == Plot.Availability.SUNK:
 						focusPlot.raise(Plot.Availability.BUYABLE)
 
-func develop(type: SpaceType):
-	pass
+func develop(type: Development.DevelopmentType) -> void:
+	raise(Plot.Availability.BOUGHT)
+	var developmentNode: Development = Instantiate.scene(Development.devTypeClassNames[type])
+	%BuildingDevelopment.add_child(developmentNode)
+
+#region focus code
+func focus() -> void:
+	
+	
+	if availabilityState == Availability.BUYABLE:
+		%PurchasePicker.show()
+		var focusTween: Tween = get_tree().create_tween()
+		focusTween.tween_property(%PurchasePicker, "scale", Vector3(1, 1, 1), 0.5).set_trans(Tween.TRANS_CUBIC)
+	else:
+		pass
+
+func defocus() -> void:
+	
+	
+	if availabilityState == Availability.BUYABLE || availabilityState == Availability.BOUGHT:
+		var defocusTween: Tween = get_tree().create_tween()
+		defocusTween.tween_property(%PurchasePicker, "scale", Vector3(0.001, 0.001, 0.001), 0.5).set_trans(Tween.TRANS_CUBIC)
+		defocusTween.finished.connect(func(): %PurchasePicker.hide())
+	else: 
+		pass
+#endregion
 
 func _process(delta: float) -> void:
 	pass
 
-
 func _on_plot_collision_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			raise(Plot.Availability.BOUGHT)
+		if event.button_index == MOUSE_BUTTON_LEFT && event.pressed:
+			gotFocused.emit(self)
+			# develop(Development.DevelopmentType.MAIN)
 		print("Clicked on: " + name)
+
+
+func _on_purchase_picker_option_chosen(type: Development.DevelopmentType) -> void:
+	develop(type)
+	get_parent().focusPlot = null

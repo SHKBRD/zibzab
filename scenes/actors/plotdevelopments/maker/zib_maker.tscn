@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://h6sxlu5ulq3c"]
+
+[ext_resource type="PackedScene" uid="uid://bk1fxele64dq7" path="res://assets/plot_developments/ZibMaker.blend" id="1_ss00h"]
+[ext_resource type="Script" uid="uid://df4mu3ydn4xdu" path="res://scenes/actors/plotdevelopments/maker/zib_maker.gd" id="2_76xuq"]
+[ext_resource type="Material" uid="uid://cocc5ouw71hc5" path="res://shaders/outlineshader.tres" id="3_5xysu"]
+
+[node name="ZibMaker" instance=ExtResource("1_ss00h")]
+script = ExtResource("2_76xuq")
+
+[node name="Sphere" parent="." index="0"]
+surface_material_override/1 = ExtResource("3_5xysu")
+
+[node name="Cylinder" parent="." index="1"]
+surface_material_override/1 = ExtResource("3_5xysu")
+
+[node name="Cube_001" parent="." index="2"]
+surface_material_override/2 = ExtResource("3_5xysu")
+
+[node name="ZibHolder" parent="." index="3"]
+surface_material_override/2 = ExtResource("3_5xysu")
