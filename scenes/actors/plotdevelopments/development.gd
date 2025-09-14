@@ -17,3 +17,6 @@ static var devTypeClassNames: Dictionary[DevelopmentType, GDScript] = {
 	DevelopmentType.CHARGER: ChargerDevelopment,
 	DevelopmentType.ZIB_MAKER: ZibMakerDevelopment
 }
+
+@export var orbitCenter: Node3D
+@export var orbitRadius: float

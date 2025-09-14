@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://c6b2yfgwdfgvv"]
+[gd_scene load_steps=11 format=3 uid="uid://c6b2yfgwdfgvv"]
 
 [ext_resource type="Script" uid="uid://ci235s1ttho21" path="res://scenes/world_scene/world_scene.gd" id="1_cih2l"]
 [ext_resource type="Material" uid="uid://xnpqndxhsn5" path="res://scenes/world_scene/shaders/water.tres" id="1_wdn8f"]
 [ext_resource type="PackedScene" uid="uid://dogm3jw7h567q" path="res://scenes/actors/base_plot/base_plot.tscn" id="2_bn180"]
 [ext_resource type="Script" uid="uid://dtq3gs0bkn117" path="res://scenes/world_scene/scripts/world_camera.gd" id="2_l4v6i"]
 [ext_resource type="Script" uid="uid://rwqr8dol12av" path="res://scenes/world_scene/scripts/plot_setup.gd" id="2_mh22i"]
+[ext_resource type="PackedScene" uid="uid://xocqy32u24l3" path="res://scenes/actors/zib/zib.tscn" id="6_vol3y"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bn180"]
 sky_top_color = Color(0, 1, 1, 1)
@@ -45,3 +46,11 @@ script = ExtResource("2_mh22i")
 
 [node name="BasePlot" parent="Plots" instance=ExtResource("2_bn180")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.141158, 0.876557, 0.0159931)
+
+[node name="ZIbs" type="Node3D" parent="."]
+
+[node name="Zib" parent="ZIbs" instance=ExtResource("6_vol3y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.45374, 1.57708, -4.56712)
+
+[node name="Zib2" parent="ZIbs" instance=ExtResource("6_vol3y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7215, 1.33999, 5.92096)

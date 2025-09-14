@@ -6,6 +6,8 @@ signal gotFocused(plot: Plot)
 var gridX: int
 var gridY: int
 
+var assignedZibs: Array[Zib]
+
 enum Availability {
 	SUNK,
 	BUYABLE,

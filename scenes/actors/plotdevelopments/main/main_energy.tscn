@@ -15,3 +15,6 @@ surface_material_override/2 = ExtResource("3_v78eq")
 
 [node name="Cylinder" parent="." index="2"]
 surface_material_override/1 = ExtResource("3_v78eq")
+
+[node name="TowerCenter" parent="." index="3"]
+unique_name_in_owner = true

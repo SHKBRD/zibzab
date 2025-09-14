@@ -4,8 +4,10 @@
 [ext_resource type="Script" uid="uid://nyoq8o4rqvoc" path="res://scenes/actors/plotdevelopments/energy/energy_gen.gd" id="2_qjhcn"]
 [ext_resource type="Material" uid="uid://cocc5ouw71hc5" path="res://shaders/outlineshader.tres" id="3_hpkmb"]
 
-[node name="EnergyGenIsland" instance=ExtResource("1_xe1l2")]
+[node name="EnergyGenIsland" node_paths=PackedStringArray("orbitCenter") instance=ExtResource("1_xe1l2")]
 script = ExtResource("2_qjhcn")
+orbitCenter = NodePath("TowerCenter")
+orbitRadius = 4.0
 
 [node name="Tower" parent="." index="0"]
 surface_material_override/1 = ExtResource("3_hpkmb")
