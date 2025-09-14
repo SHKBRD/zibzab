@@ -10,6 +10,13 @@ enum DevelopmentType {
 	ZIB_MAKER
 }
 
+enum WorkType {
+	NONE,
+	ORBIT,
+	UPGRADE,
+	WANDER
+}
+
 static var devTypeClassNames: Dictionary[DevelopmentType, GDScript] = {
 	DevelopmentType.MAIN: MainDevelopment,
 	DevelopmentType.TOWER: EnergyGenDevelopment,
@@ -20,5 +27,38 @@ static var devTypeClassNames: Dictionary[DevelopmentType, GDScript] = {
 
 @export var orbitCenter: Node3D
 @export var orbitRadius: float
+@export var orbitRotateSpeed: float = 90
 
 @export var zibWorkingCapacity: int
+@export var workType: WorkType
+
+var assignedZibs: Array[Zib]
+
+func _ready() -> void:
+	zibPathsSetup(zibWorkingCapacity)
+
+func zibPathsSetup(capacity: int) -> void:
+	if orbitCenter == null: return
+	if orbitCenter.get_child_count() != 0:
+		for orbitHolder: Node3D in orbitCenter.get_children():
+			orbitHolder.queue_free()
+	for zibWorkerNumber: int in zibWorkingCapacity:
+		var workerPlaceholder: Node3D = Node3D.new()
+		workerPlaceholder.position.x = orbitCenter.position.x + orbitRadius * cos(deg_to_rad(360*zibWorkerNumber/zibWorkingCapacity))
+		workerPlaceholder.position.z = orbitCenter.position.z + orbitRadius * sin(deg_to_rad(360*zibWorkerNumber/zibWorkingCapacity))
+		workerPlaceholder.position.y = -2
+		orbitCenter.add_child(workerPlaceholder)
+
+		
+func assignZib(zib: Zib) -> void:
+	if assignedZibs.size() < zibWorkingCapacity:
+		assignedZibs.append(zib)
+		if workType == WorkType.ORBIT or workType == WorkType.UPGRADE:
+			var zibId: int = assignedZibs.find(zib)
+			zib.workTarget = orbitCenter.get_child(zibId)
+		zib.assignedPlot = get_parent().get_parent()
+		pass
+
+func _process(delta: float) -> void:
+	if orbitCenter:
+		orbitCenter.rotate_y(deg_to_rad(orbitRotateSpeed) * delta)

@@ -6,8 +6,6 @@ signal gotFocused(plot: Plot)
 var gridX: int
 var gridY: int
 
-var assignedZibs: Array[Zib]
-
 enum Availability {
 	SUNK,
 	BUYABLE,
@@ -16,6 +14,9 @@ enum Availability {
 var availabilityState: Availability = Availability.SUNK
 
 var spaceType: Development.DevelopmentType = Development.DevelopmentType.NONE
+
+func get_development() -> Development:
+	return %BuildingDevelopment.get_child(0)
 
 func _ready() -> void:
 	var smallScale: Vector3 = Vector3(0.001, 0.001, 0.001)
@@ -26,6 +27,7 @@ func _ready() -> void:
 	hide()
 	
 
+#region plot upgrades
 func raise(type: Availability) -> void:
 	availabilityState = type
 	
@@ -48,6 +50,7 @@ func develop(type: Development.DevelopmentType) -> void:
 	raise(Plot.Availability.BOUGHT)
 	var developmentNode: Development = Instantiate.scene(Development.devTypeClassNames[type])
 	%BuildingDevelopment.add_child(developmentNode)
+#endregion
 
 #region focus code
 func focus() -> void:
@@ -61,8 +64,14 @@ func focus() -> void:
 		var selectedZibs: Array = get_tree().get_nodes_in_group("SelectedZibs")
 		if selectedZibs.is_empty():
 			pass
+		elif %BuildingDevelopment.get_child(0).zibWorkingCapacity - selectedZibs.size() < 0:
+			pass
 		else:
-			get_tree().call_group("SelectedZibs", "move_to_plot", self)
+			for zib: Zib in selectedZibs:
+				%BuildingDevelopment.get_child(0).assignZib(zib)
+				zib.move_to_plot(self)
+				zib.on_deselected()
+			#get_tree().call_group("SelectedZibs", "move_to_plot", self)
 		pass
 
 func defocus() -> void:

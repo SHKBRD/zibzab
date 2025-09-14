@@ -7,6 +7,7 @@
 [node name="ChargerPlot" instance=ExtResource("1_wup2y")]
 script = ExtResource("2_uth6v")
 zibWorkingCapacity = 1
+workType = 2
 
 [node name="BatteryPads" parent="." index="0"]
 surface_material_override/2 = ExtResource("3_ia3w8")
