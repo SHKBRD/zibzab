@@ -20,3 +20,5 @@ static var devTypeClassNames: Dictionary[DevelopmentType, GDScript] = {
 
 @export var orbitCenter: Node3D
 @export var orbitRadius: float
+
+@export var zibWorkingCapacity: int

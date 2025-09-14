@@ -4,8 +4,10 @@
 [ext_resource type="Script" uid="uid://df4mu3ydn4xdu" path="res://scenes/actors/plotdevelopments/maker/zib_maker.gd" id="2_76xuq"]
 [ext_resource type="Material" uid="uid://cocc5ouw71hc5" path="res://shaders/outlineshader.tres" id="3_5xysu"]
 
-[node name="ZibMaker" instance=ExtResource("1_ss00h")]
+[node name="ZibMaker" node_paths=PackedStringArray("orbitCenter") instance=ExtResource("1_ss00h")]
 script = ExtResource("2_76xuq")
+orbitCenter = NodePath("TowerCenter")
+zibWorkingCapacity = 4
 
 [node name="Sphere" parent="." index="0"]
 surface_material_override/1 = ExtResource("3_5xysu")

@@ -4,8 +4,10 @@
 [ext_resource type="Script" uid="uid://d0a8w3n8k87ea" path="res://scenes/actors/plotdevelopments/main/main_energy.gd" id="2_1mwqn"]
 [ext_resource type="Material" uid="uid://cocc5ouw71hc5" path="res://shaders/outlineshader.tres" id="3_v78eq"]
 
-[node name="MainEnergyIsland" instance=ExtResource("1_v78eq")]
+[node name="MainEnergyIsland" node_paths=PackedStringArray("orbitCenter") instance=ExtResource("1_v78eq")]
 script = ExtResource("2_1mwqn")
+orbitCenter = NodePath("TowerCenter")
+zibWorkingCapacity = 8
 
 [node name="Sphere" parent="." index="0"]
 surface_material_override/1 = ExtResource("3_v78eq")

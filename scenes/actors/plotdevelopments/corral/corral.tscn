@@ -6,6 +6,7 @@
 
 [node name="CorralIsland" instance=ExtResource("1_n42nx")]
 script = ExtResource("2_ejp6b")
+zibWorkingCapacity = 6
 
 [node name="BézierCurve" parent="." index="0"]
 surface_material_override/2 = ExtResource("3_n42nx")

@@ -57,7 +57,12 @@ func focus() -> void:
 		%PurchasePicker.show()
 		var focusTween: Tween = get_tree().create_tween()
 		focusTween.tween_property(%PurchasePicker, "scale", Vector3(1, 1, 1), 0.5).set_trans(Tween.TRANS_CUBIC)
-	else:
+	elif availabilityState == Availability.BOUGHT:
+		var selectedZibs: Array = get_tree().get_nodes_in_group("SelectedZibs")
+		if selectedZibs.is_empty():
+			pass
+		else:
+			get_tree().call_group("SelectedZibs", "move_to_plot", self)
 		pass
 
 func defocus() -> void:

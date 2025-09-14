@@ -8,6 +8,7 @@
 script = ExtResource("2_qjhcn")
 orbitCenter = NodePath("TowerCenter")
 orbitRadius = 4.0
+zibWorkingCapacity = 4
 
 [node name="Tower" parent="." index="0"]
 surface_material_override/1 = ExtResource("3_hpkmb")
