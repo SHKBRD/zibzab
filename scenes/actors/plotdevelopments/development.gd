@@ -52,6 +52,7 @@ func zibPathsSetup(capacity: int) -> void:
 		
 func assignZib(zib: Zib) -> void:
 	zib.workTarget = null
+	zib.workConnect = 0
 	if assignedZibs.find(null) != -1:
 		assignedZibs[assignedZibs.find(null)] = zib
 	elif assignedZibs.size() < zibWorkingCapacity:

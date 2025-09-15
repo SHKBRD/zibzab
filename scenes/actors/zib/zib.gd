@@ -38,7 +38,6 @@ func _ready() -> void:
 
 
 func move_to_plot(plot: Plot) -> void:
-	#workTarget = null
 	assignedPlot = plot
 	zibState = ZibState.PLOT_HEADING
 
