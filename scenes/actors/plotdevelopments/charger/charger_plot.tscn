@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cihp1teg8fec6"]
+[gd_scene load_steps=5 format=3 uid="uid://cihp1teg8fec6"]
 
 [ext_resource type="PackedScene" uid="uid://b4fm6y6og356g" path="res://assets/plot_developments/ChargerPlot.blend" id="1_wup2y"]
 [ext_resource type="Script" uid="uid://b1y3aw7est5jw" path="res://scenes/actors/plotdevelopments/charger/charger_plot.gd" id="2_uth6v"]
 [ext_resource type="Material" uid="uid://cocc5ouw71hc5" path="res://shaders/outlineshader.tres" id="3_ia3w8"]
+[ext_resource type="PackedScene" uid="uid://7b3rw4y47ax5" path="res://scenes/actors/plotdevelopments/ZibHolder/zib_holder.tscn" id="4_aggnv"]
 
-[node name="ChargerPlot" instance=ExtResource("1_wup2y")]
+[node name="ChargerPlot" node_paths=PackedStringArray("orbitCenter") instance=ExtResource("1_wup2y")]
 script = ExtResource("2_uth6v")
+orbitCenter = NodePath("ZibHolderPlace/ZibHolder/ZibHolderSpot")
 zibWorkingCapacity = 1
 workType = 2
 
@@ -26,3 +28,7 @@ surface_material_override/1 = ExtResource("3_ia3w8")
 
 [node name="BatteryCell3" parent="." index="6"]
 surface_material_override/1 = ExtResource("3_ia3w8")
+
+[node name="ZibHolder" parent="ZibHolderPlace" index="0" instance=ExtResource("4_aggnv")]
+
+[editable path="ZibHolderPlace/ZibHolder"]

@@ -10,7 +10,7 @@ var zibVelocity: Vector3
 
 var assignedPlot: Plot = null
 
-var targetHeadingPlot: Plot = null
+# var targetHeadingPlot: Plot = null
 var workTarget: Node3D = null
 var workConnect: float = 0
 var workConnectDelay: float = 0.01
@@ -37,7 +37,7 @@ func _ready() -> void:
 
 
 func move_to_plot(plot: Plot) -> void:
-	targetHeadingPlot = plot
+	assignedPlot = plot
 	zibState = ZibState.PLOT_HEADING
 
 
@@ -49,9 +49,9 @@ func work_orbit(delta: float) -> void:
 func process_zib_state(delta: float) -> void:
 	match zibState:
 		ZibState.PLOT_HEADING:
-			global_position = global_position.move_toward(targetHeadingPlot.global_position * Vector3(1, 0, 1) + Vector3(0, 5, 0), maxFlightSpeed * delta)
-			var unitDistance: Vector3 = (targetHeadingPlot.global_position - global_position).abs()
-			if unitDistance.x < 16 or unitDistance.z < 16:
+			global_position = global_position.move_toward(assignedPlot.global_position * Vector3(1, 0, 1) + Vector3(0, 5, 0), maxFlightSpeed * delta)
+			var unitDistance: Vector3 = (assignedPlot.global_position - global_position).abs()
+			if unitDistance.x < 8 or unitDistance.z < 8:
 				zibState = ZibState.WORK_HEADING
 		ZibState.WORK_HEADING:
 			if [Development.WorkType.ORBIT, Development.WorkType.UPGRADE].has(assignedPlot.get_development().workType):

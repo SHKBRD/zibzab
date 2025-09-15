@@ -49,6 +49,7 @@ func raise(type: Availability) -> void:
 func develop(type: Development.DevelopmentType) -> void:
 	raise(Plot.Availability.BOUGHT)
 	var developmentNode: Development = Instantiate.scene(Development.devTypeClassNames[type])
+	spaceType = type
 	%BuildingDevelopment.add_child(developmentNode)
 #endregion
 
@@ -71,6 +72,7 @@ func focus() -> void:
 				%BuildingDevelopment.get_child(0).assignZib(zib)
 				zib.move_to_plot(self)
 				zib.on_deselected()
+			defocus()
 			#get_tree().call_group("SelectedZibs", "move_to_plot", self)
 		pass
 
@@ -94,6 +96,7 @@ func _on_plot_collision_input_event(camera: Node, event: InputEvent, event_posit
 			gotFocused.emit(self)
 			# develop(Development.DevelopmentType.MAIN)
 		print("Clicked on: " + name)
+		print(get_tree().get_nodes_in_group("SelectedZibs"))
 
 
 func _on_purchase_picker_option_chosen(type: Development.DevelopmentType) -> void:

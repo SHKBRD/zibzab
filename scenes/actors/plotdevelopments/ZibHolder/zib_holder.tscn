@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=4 uid="uid://7b3rw4y47ax5"]
+[gd_scene load_steps=9 format=4 uid="uid://7b3rw4y47ax5"]
 
 [ext_resource type="PackedScene" uid="uid://5akn2ygyiq7y" path="res://assets/plot_developments/ZibHolder.blend" id="1_2g8on"]
+[ext_resource type="Script" uid="uid://bbifdhke6jvr7" path="res://scenes/actors/plotdevelopments/ZibHolder/zib_holder.gd" id="2_g4wmm"]
 [ext_resource type="Material" uid="uid://cocc5ouw71hc5" path="res://shaders/outlineshader.tres" id="2_gicxw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nerm5"]
@@ -102,7 +103,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_li004")
 
-[node name="ZibHolder" instance=ExtResource("1_2g8on")]
+[node name="ZibHolder" node_paths=PackedStringArray("holderSpot") instance=ExtResource("1_2g8on")]
+script = ExtResource("2_g4wmm")
+holderSpot = NodePath("ZibHolderSpot")
 
 [node name="ZibHolder" parent="." index="0"]
 surface_material_override/2 = ExtResource("2_gicxw")

@@ -44,8 +44,8 @@ func zibPathsSetup(capacity: int) -> void:
 			orbitHolder.queue_free()
 	for zibWorkerNumber: int in zibWorkingCapacity:
 		var workerPlaceholder: Node3D = Node3D.new()
-		workerPlaceholder.position.x = orbitCenter.position.x + orbitRadius * cos(deg_to_rad(360*zibWorkerNumber/zibWorkingCapacity))
-		workerPlaceholder.position.z = orbitCenter.position.z + orbitRadius * sin(deg_to_rad(360*zibWorkerNumber/zibWorkingCapacity))
+		workerPlaceholder.position.x = 0*orbitCenter.position.x + orbitRadius * cos(deg_to_rad(360*zibWorkerNumber/zibWorkingCapacity))
+		workerPlaceholder.position.z = 0*orbitCenter.position.z + orbitRadius * sin(deg_to_rad(360*zibWorkerNumber/zibWorkingCapacity))
 		workerPlaceholder.position.y = -2
 		orbitCenter.add_child(workerPlaceholder)
 

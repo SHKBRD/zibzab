@@ -6,13 +6,15 @@ var cols: int = 17
 
 var focusPlot: Plot = null:
 	set(value):
+		#if focusPlot and not get_tree().get_nodes_in_group("SelectedZibs").is_empty():
 		if focusPlot:
 			focusPlot.defocus()
 			
 		if focusPlot != value:
 			focusPlot = value
-			return
-		focusPlot = null
+		else:
+			focusPlot = null
+		print("Plot: " + str(focusPlot))
 
 
 func populate_plots():
