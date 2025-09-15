@@ -68,8 +68,13 @@ func focus() -> void:
 		elif %BuildingDevelopment.get_child(0).zibWorkingCapacity - selectedZibs.size() < 0:
 			pass
 		else:
+			print("Zib Assignment")
 			for zib: Zib in selectedZibs:
-				%BuildingDevelopment.get_child(0).assignZib(zib)
+				if zib.assignedPlot == self: continue
+				if zib.assignedPlot:
+					var plotZibList: Array = zib.assignedPlot.get_development().assignedZibs
+					plotZibList[plotZibList.find(zib)] = null
+				get_development().assignZib(zib)
 				zib.move_to_plot(self)
 				zib.on_deselected()
 			defocus()

@@ -4,7 +4,7 @@ class_name PlotSpace
 var rows: int = 17
 var cols: int = 17
 
-var focusPlot: Plot = null:
+static var focusPlot: Plot = null:
 	set(value):
 		#if focusPlot and not get_tree().get_nodes_in_group("SelectedZibs").is_empty():
 		if focusPlot:

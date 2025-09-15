@@ -23,7 +23,7 @@ var isSelected: bool = false
 enum ZibState {
 	IDLE,
 	PLOT_HEADING,
-	WORK_HEADING,
+	#WORK_HEADING,
 	WORKING,
 	TIRED
 }
@@ -52,10 +52,10 @@ func process_zib_state(delta: float) -> void:
 			global_position = global_position.move_toward(assignedPlot.global_position * Vector3(1, 0, 1) + Vector3(0, 5, 0), maxFlightSpeed * delta)
 			var unitDistance: Vector3 = (assignedPlot.global_position - global_position).abs()
 			if unitDistance.x < 8 or unitDistance.z < 8:
-				zibState = ZibState.WORK_HEADING
-		ZibState.WORK_HEADING:
-			if [Development.WorkType.ORBIT, Development.WorkType.UPGRADE].has(assignedPlot.get_development().workType):
 				zibState = ZibState.WORKING
+		#ZibState.WORK_HEADING:
+			#if [Development.WorkType.ORBIT, Development.WorkType.UPGRADE].has(assignedPlot.get_development().workType):
+				#zibState = ZibState.WORKING
 			#global_position = global_position.move_toward(workTarget.global_position, maxFlightSpeed * delta)
 		ZibState.WORKING:
 			if [Development.WorkType.ORBIT, Development.WorkType.UPGRADE].has(assignedPlot.get_development().workType):
@@ -80,6 +80,7 @@ func on_deselected() -> void:
 
 
 func on_selected() -> void:
+	PlotSpace.focusPlot = null
 	selected.emit(self)
 	isSelected = true
 	add_to_group("SelectedZibs")

@@ -46,6 +46,7 @@ script = ExtResource("2_mh22i")
 
 [node name="BasePlot" parent="Plots" instance=ExtResource("2_bn180")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.141158, 0.876557, 0.0159931)
+visible = false
 
 [node name="ZIbs" type="Node3D" parent="."]
 

@@ -51,13 +51,18 @@ func zibPathsSetup(capacity: int) -> void:
 
 		
 func assignZib(zib: Zib) -> void:
-	if assignedZibs.size() < zibWorkingCapacity:
+	if assignedZibs.find(null) != -1:
+		assignedZibs[assignedZibs.find(null)] = zib
+	elif assignedZibs.size() < zibWorkingCapacity:
 		assignedZibs.append(zib)
-		if workType == WorkType.ORBIT or workType == WorkType.UPGRADE:
-			var zibId: int = assignedZibs.find(zib)
-			zib.workTarget = orbitCenter.get_child(zibId)
-		zib.assignedPlot = get_parent().get_parent()
-		pass
+	else:
+		return
+	if workType == WorkType.ORBIT or workType == WorkType.UPGRADE:
+		var zibId: int = assignedZibs.find(zib)
+		print(zibId)
+		zib.workTarget = orbitCenter.get_child(zibId)
+	zib.assignedPlot = get_parent().get_parent()
+	pass
 
 func _process(delta: float) -> void:
 	if orbitCenter:
