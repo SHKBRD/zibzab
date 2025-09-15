@@ -68,6 +68,14 @@ func assignZib(zib: Zib) -> void:
 	zib.assignedPlot = get_parent().get_parent()
 	pass
 
+func on_zib_work_completed(amount: int, zib: Zib) -> void:
+	
+	for applyAmount: int in amount:
+		apply_calculated_work_value()
+
+func apply_calculated_work_value() -> void:
+	pass
+
 func _process(delta: float) -> void:
 	if orbitCenter:
 		orbitCenter.rotate_y(deg_to_rad(orbitRotateSpeed) * delta)

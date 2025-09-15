@@ -53,6 +53,16 @@ func develop(type: Development.DevelopmentType) -> void:
 	%BuildingDevelopment.add_child(developmentNode)
 #endregion
 
+func attempt_transfer_zib_to_this_plot(zib: Zib) -> bool:
+	if zib.assignedPlot == self: return false
+	if zib.assignedPlot:
+		var plotZibList: Array = zib.assignedPlot.get_development().assignedZibs
+		plotZibList[plotZibList.find(zib)] = null
+	get_development().assignZib(zib)
+	zib.move_to_plot(self)
+	zib.on_deselected()
+	return true
+
 #region focus code
 func focus() -> void:
 	
@@ -73,13 +83,7 @@ func focus() -> void:
 		else:
 			print("Zib Assignment")
 			for zib: Zib in selectedZibs:
-				if zib.assignedPlot == self: continue
-				if zib.assignedPlot:
-					var plotZibList: Array = zib.assignedPlot.get_development().assignedZibs
-					plotZibList[plotZibList.find(zib)] = null
-				get_development().assignZib(zib)
-				zib.move_to_plot(self)
-				zib.on_deselected()
+				attempt_transfer_zib_to_this_plot(zib)
 			defocus()
 			#get_tree().call_group("SelectedZibs", "move_to_plot", self)
 		pass
@@ -105,6 +109,7 @@ func _on_plot_collision_input_event(camera: Node, event: InputEvent, event_posit
 			# develop(Development.DevelopmentType.MAIN)
 		print("Clicked on: " + name)
 		print(get_tree().get_nodes_in_group("SelectedZibs"))
+
 
 
 func _on_purchase_picker_option_chosen(type: Development.DevelopmentType) -> void:

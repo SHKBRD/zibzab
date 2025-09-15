@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://c6b2yfgwdfgvv"]
+[gd_scene load_steps=12 format=3 uid="uid://c6b2yfgwdfgvv"]
 
 [ext_resource type="Script" uid="uid://ci235s1ttho21" path="res://scenes/world_scene/world_scene.gd" id="1_cih2l"]
 [ext_resource type="Material" uid="uid://xnpqndxhsn5" path="res://scenes/world_scene/shaders/water.tres" id="1_wdn8f"]
 [ext_resource type="PackedScene" uid="uid://dogm3jw7h567q" path="res://scenes/actors/base_plot/base_plot.tscn" id="2_bn180"]
 [ext_resource type="Script" uid="uid://dtq3gs0bkn117" path="res://scenes/world_scene/scripts/world_camera.gd" id="2_l4v6i"]
 [ext_resource type="Script" uid="uid://rwqr8dol12av" path="res://scenes/world_scene/scripts/plot_setup.gd" id="2_mh22i"]
+[ext_resource type="PackedScene" uid="uid://b0pwcd5lwmaml" path="res://scenes/ui/main_game_ui.tscn" id="2_sgpo1"]
 [ext_resource type="PackedScene" uid="uid://xocqy32u24l3" path="res://scenes/actors/zib/zib.tscn" id="6_vol3y"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bn180"]
@@ -29,8 +30,22 @@ glow_enabled = true
 [node name="World" type="Node3D"]
 script = ExtResource("1_cih2l")
 
+[node name="MainGameUI" parent="." instance=ExtResource("2_sgpo1")]
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 environment = SubResource("Environment_l4v6i")
+camera_attributes = null
+compositor = null
+script = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(2576.82, 0, 0, 0, 1, 0, 0, 0, 2576.82, 0, 0, 0)

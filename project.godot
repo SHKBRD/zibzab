@@ -18,11 +18,13 @@ config/icon="res://icon.svg"
 [autoload]
 
 Instantiate="*res://globals/instantiate.gd"
+Incrementals="*res://globals/incrementals.gd"
+NumberFormat="*res://globals/number_format.gd"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=1280
+window/size/viewport_height=720
 
 [global_group]
 

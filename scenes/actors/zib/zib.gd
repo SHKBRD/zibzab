@@ -3,6 +3,7 @@ class_name Zib
 
 signal selected(zib: Zib)
 signal deselected(zib: Zib)
+signal work_completed(amount: int)
 
 @export var maxFlightSpeed: float = 9
 @export var maxWanderSpeed: float = 5
@@ -16,8 +17,13 @@ var workTarget: Node3D = null
 var workConnect: float = 0
 var workConnectDelay: float = 0.05
 
+# work per second
 var zibWorkEffective: float = 0.5
 var zibWorkProgress: float = 0
+var workCompleted: int = 0
+var workLimit: int = 30
+var isZibTired: bool = false
+
 
 var isSelected: bool = false
 
@@ -26,7 +32,6 @@ enum ZibState {
 	PLOT_HEADING,
 	#WORK_HEADING,
 	WORKING,
-	TIRED
 }
 
 var zibState: ZibState = ZibState.IDLE
@@ -42,6 +47,13 @@ func move_to_plot(plot: Plot) -> void:
 	zibState = ZibState.PLOT_HEADING
 
 
+#region Zib Work
+func plot_move(delta: float) -> void:
+	if [Development.WorkType.ORBIT, Development.WorkType.UPGRADE].has(assignedPlot.get_development().workType):
+		work_orbit(delta)
+	if [Development.WorkType.WANDER].has(assignedPlot.get_development().workType):
+		work_wander(delta)
+
 func work_orbit(delta: float) -> void:
 	# var lerpFinal: float = 1-pow(workConnectDelay, delta)
 	workConnect += workConnectDelay * delta
@@ -52,32 +64,47 @@ func work_orbit(delta: float) -> void:
 func work_wander(delta: float) -> void:
 	if workTarget == null or workTarget.global_position == global_position:
 		if workTarget: workTarget.queue_free()
+		
+		# wander location generation
 		workTarget = Node3D.new()
 		assignedPlot.add_child(workTarget)
 		var randX: float = RandomNumberGenerator.new().randf_range(-6, 6)
 		var randZ: float = RandomNumberGenerator.new().randf_range(-6, 6)
+		
 		workTarget.global_position = assignedPlot.global_position + Vector3(randX, 0, randZ)
 	global_position = global_position.move_toward(workTarget.global_position, maxWanderSpeed*delta)
+
+func make_zib_tired() -> void:
+	isZibTired = true
+
+func make_work(delta: float) -> void:
+	zibWorkProgress += zibWorkEffective * delta
+	
+	var workAchieved: int = floor(zibWorkProgress)
+	assignedPlot.get_development().on_zib_work_completed(workAchieved, self)
+	for workTime: int in workAchieved:
+		zibWorkProgress -= 1
+		workCompleted += 1
+		if workCompleted == workLimit:
+			make_zib_tired()
+	zibWorkProgress -= workAchieved
+
+#endregion
 
 func process_zib_state(delta: float) -> void:
 	match zibState:
 		ZibState.PLOT_HEADING:
+			# heading to plot
 			global_position = global_position.move_toward(assignedPlot.global_position * Vector3(1, 0, 1) + Vector3(0, 5, 0), maxFlightSpeed * delta)
+			
+			# transitioning to work based on proximty to plot
 			var unitDistance: Vector3 = (assignedPlot.global_position - global_position).abs()
 			if unitDistance.x < 8 or unitDistance.z < 8:
 				zibState = ZibState.WORKING
-		#ZibState.WORK_HEADING:
-			#if [Development.WorkType.ORBIT, Development.WorkType.UPGRADE].has(assignedPlot.get_development().workType):
-				#zibState = ZibState.WORKING
-			#global_position = global_position.move_toward(workTarget.global_position, maxFlightSpeed * delta)
 		ZibState.WORKING:
-			if [Development.WorkType.ORBIT, Development.WorkType.UPGRADE].has(assignedPlot.get_development().workType):
-				work_orbit(delta)
-			if [Development.WorkType.WANDER].has(assignedPlot.get_development().workType):
-				work_wander(delta)
-			
-		ZibState.TIRED:
-			pass
+			plot_move(delta)
+			if not isZibTired:
+				make_work(delta)
 		_:
 			pass
 

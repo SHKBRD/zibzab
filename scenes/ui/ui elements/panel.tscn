@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://ct6qhwbd1void"]
+
+[ext_resource type="Theme" uid="uid://dtvlxmnsnovih" path="res://scenes/ui/ui elements/ui_MG_theme.tres" id="1_xnx3v"]
+[ext_resource type="FontFile" uid="uid://b1dlx7ssmg0rn" path="res://assets/fonts/Monomaniac_One/MonomaniacOne-Regular.ttf" id="2_0pnvu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7t8um"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 20
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3k0w0"]
+content_margin_left = 15.0
+content_margin_right = 15.0
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="Theme" id="Theme_qpnv8"]
+Panel/styles/panel = SubResource("StyleBoxFlat_7t8um")
+RichTextLabel/font_sizes/normal_font_size = 30
+RichTextLabel/fonts/normal_font = ExtResource("2_0pnvu")
+RichTextLabel/styles/normal = SubResource("StyleBoxFlat_3k0w0")
+
+[node name="PanelContainer" type="PanelContainer"]
+offset_right = 275.0
+offset_bottom = 61.0
+theme = ExtResource("1_xnx3v")
+
+[node name="Container" type="MarginContainer" parent="."]
+layout_mode = 2
+theme = ExtResource("1_xnx3v")
+
+[node name="Panel" type="RichTextLabel" parent="Container"]
+layout_mode = 2
+theme = SubResource("Theme_qpnv8")
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1

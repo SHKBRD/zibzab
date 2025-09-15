@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0pwcd5lwmaml"]
+
+[ext_resource type="Script" uid="uid://nhcv76f3tst0" path="res://scenes/ui/main_game_ui.gd" id="1_2lr7m"]
+[ext_resource type="PackedScene" uid="uid://ct6qhwbd1void" path="res://scenes/ui/ui elements/panel.tscn" id="1_i8egv"]
+
+[node name="MainGameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_2lr7m")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="EnergyControl" parent="VBoxContainer" instance=ExtResource("1_i8egv")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Panel" parent="VBoxContainer/EnergyControl/Container" index="0"]
+text = "1,000,000,000/1,000,000,000"
+
+[node name="ZabControl" parent="VBoxContainer" instance=ExtResource("1_i8egv")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Panel" parent="VBoxContainer/ZabControl/Container" index="0"]
+text = "100[img width='40']res://assets/ui/zabIcon.png[/img]"
+
+[editable path="VBoxContainer/EnergyControl"]
+[editable path="VBoxContainer/ZabControl"]
