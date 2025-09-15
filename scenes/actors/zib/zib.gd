@@ -5,6 +5,7 @@ signal selected(zib: Zib)
 signal deselected(zib: Zib)
 
 @export var maxFlightSpeed: float = 9
+@export var maxWanderSpeed: float = 5
 
 var zibVelocity: Vector3
 
@@ -13,7 +14,7 @@ var assignedPlot: Plot = null
 # var targetHeadingPlot: Plot = null
 var workTarget: Node3D = null
 var workConnect: float = 0
-var workConnectDelay: float = 0.01
+var workConnectDelay: float = 0.05
 
 var zibWorkEffective: float = 0.5
 var zibWorkProgress: float = 0
@@ -37,14 +38,27 @@ func _ready() -> void:
 
 
 func move_to_plot(plot: Plot) -> void:
+	#workTarget = null
 	assignedPlot = plot
 	zibState = ZibState.PLOT_HEADING
 
 
 func work_orbit(delta: float) -> void:
-	var lerpFinal: float = 1-pow(workConnectDelay, delta)
+	# var lerpFinal: float = 1-pow(workConnectDelay, delta)
+	workConnect += workConnectDelay * delta
+	workConnect = clamp(workConnect, 0, 1)
 	#print(lerpFinal)
-	global_position = global_position.lerp(workTarget.global_position, lerpFinal)
+	global_position = global_position.lerp(workTarget.global_position, workConnect)
+
+func work_wander(delta: float) -> void:
+	if workTarget == null or workTarget.global_position == global_position:
+		if workTarget: workTarget.queue_free()
+		workTarget = Node3D.new()
+		assignedPlot.add_child(workTarget)
+		var randX: float = RandomNumberGenerator.new().randf_range(-6, 6)
+		var randZ: float = RandomNumberGenerator.new().randf_range(-6, 6)
+		workTarget.global_position = assignedPlot.global_position + Vector3(randX, 0, randZ)
+	global_position = global_position.move_toward(workTarget.global_position, maxWanderSpeed*delta)
 
 func process_zib_state(delta: float) -> void:
 	match zibState:
@@ -60,7 +74,8 @@ func process_zib_state(delta: float) -> void:
 		ZibState.WORKING:
 			if [Development.WorkType.ORBIT, Development.WorkType.UPGRADE].has(assignedPlot.get_development().workType):
 				work_orbit(delta)
-			
+			if [Development.WorkType.WANDER].has(assignedPlot.get_development().workType):
+				work_wander(delta)
 			
 		ZibState.TIRED:
 			pass

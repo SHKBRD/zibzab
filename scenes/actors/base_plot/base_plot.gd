@@ -63,9 +63,12 @@ func focus() -> void:
 		focusTween.tween_property(%PurchasePicker, "scale", Vector3(1, 1, 1), 0.5).set_trans(Tween.TRANS_CUBIC)
 	elif availabilityState == Availability.BOUGHT:
 		var selectedZibs: Array = get_tree().get_nodes_in_group("SelectedZibs")
+		var plotZibCount: int = 0
+		for existingZib: Zib in %BuildingDevelopment.get_child(0).assignedZibs:
+			if existingZib != null: plotZibCount += 1
 		if selectedZibs.is_empty():
 			pass
-		elif %BuildingDevelopment.get_child(0).zibWorkingCapacity - selectedZibs.size() < 0:
+		elif (%BuildingDevelopment.get_child(0).zibWorkingCapacity - plotZibCount) - selectedZibs.size() < 0:
 			pass
 		else:
 			print("Zib Assignment")

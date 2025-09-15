@@ -51,6 +51,7 @@ func zibPathsSetup(capacity: int) -> void:
 
 		
 func assignZib(zib: Zib) -> void:
+	zib.workTarget = null
 	if assignedZibs.find(null) != -1:
 		assignedZibs[assignedZibs.find(null)] = zib
 	elif assignedZibs.size() < zibWorkingCapacity:
@@ -61,6 +62,8 @@ func assignZib(zib: Zib) -> void:
 		var zibId: int = assignedZibs.find(zib)
 		print(zibId)
 		zib.workTarget = orbitCenter.get_child(zibId)
+	if workType == WorkType.WANDER:
+		pass
 	zib.assignedPlot = get_parent().get_parent()
 	pass
 
