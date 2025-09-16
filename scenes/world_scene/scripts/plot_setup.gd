@@ -4,17 +4,8 @@ class_name PlotSpace
 var rows: int = 17
 var cols: int = 17
 
-static var focusPlot: Plot = null:
-	set(value):
-		#if focusPlot and not get_tree().get_nodes_in_group("SelectedZibs").is_empty():
-		if focusPlot:
-			focusPlot.defocus()
-			
-		if focusPlot != value:
-			focusPlot = value
-		else:
-			focusPlot = null
-		print("Plot: " + str(focusPlot))
+static var focusPlot: Plot = null
+	
 
 
 func populate_plots():
@@ -37,7 +28,12 @@ func _ready() -> void:
 
 func on_plot_focused(plot: Plot) -> void:
 	# if focusplot is set to the plot it already has, this makes focusPlot null
-	focusPlot = plot
-	
-	if focusPlot != null:
+	if focusPlot:
+		focusPlot.defocus()
+		
+	if focusPlot != plot:
+		focusPlot = plot
 		focusPlot.focus()
+	else:
+		focusPlot = null
+	print("Plot: " + str(focusPlot))

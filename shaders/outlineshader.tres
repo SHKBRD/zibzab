@@ -1,5 +1,8 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://cocc5ouw71hc5"]
 
 [resource]
+depth_draw_mode = 1
 shading_mode = 0
 albedo_color = Color(0, 0, 0, 1)
+stencil_mode = 3
+stencil_flags = 6

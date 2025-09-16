@@ -3,6 +3,9 @@ class_name Plot
 
 signal gotFocused(plot: Plot)
 
+var plotBlackOutline: Material = preload("res://shaders/outlineshader.tres")
+var plotHighlightOutline: Material = preload("res://shaders/Highlight.tres")
+
 var gridX: int
 var gridY: int
 
@@ -22,7 +25,7 @@ func _ready() -> void:
 	var smallScale: Vector3 = Vector3(0.001, 0.001, 0.001)
 	scale = smallScale
 	%PurchasePicker.scale = smallScale
-	%PlotOutline.scale = smallScale
+	#%PlotOutline.scale = smallScale
 	
 	hide()
 	
@@ -66,12 +69,14 @@ func attempt_transfer_zib_to_this_plot(zib: Zib) -> bool:
 #region focus code
 func focus() -> void:
 	
-	
 	if availabilityState == Availability.BUYABLE:
 		%PurchasePicker.show()
 		var focusTween: Tween = get_tree().create_tween()
 		focusTween.tween_property(%PurchasePicker, "scale", Vector3(1, 1, 1), 0.5).set_trans(Tween.TRANS_CUBIC)
 	elif availabilityState == Availability.BOUGHT:
+		show_plot_outline()
+		%PlotOutline.set_surface_override_material(0, plotBlackOutline)
+		
 		var selectedZibs: Array = get_tree().get_nodes_in_group("SelectedZibs")
 		var plotZibCount: int = 0
 		for existingZib: Zib in %BuildingDevelopment.get_child(0).assignedZibs:
@@ -89,16 +94,28 @@ func focus() -> void:
 		pass
 
 func defocus() -> void:
-	
-	
+	hide_plot_outline()
 	if availabilityState == Availability.BUYABLE || availabilityState == Availability.BOUGHT:
 		var defocusTween: Tween = get_tree().create_tween()
 		defocusTween.tween_property(%PurchasePicker, "scale", Vector3(0.001, 0.001, 0.001), 0.5).set_trans(Tween.TRANS_CUBIC)
 		defocusTween.finished.connect(func(): %PurchasePicker.hide())
 	else: 
 		pass
+	PlotSpace.focusPlot = null
 #endregion
 
+func show_plot_outline() -> void:
+	#var focusTween: Tween = get_tree().create_tween()
+	%PlotOutline.show()
+	#focusTween.tween_property(%PlotOutline, "scale", Vector3(1, 1, 1), 0.5).set_trans(Tween.TRANS_CUBIC)
+
+func hide_plot_outline() -> void:
+	#var defocusTween: Tween = get_tree().create_tween()
+	#
+	#defocusTween.tween_property(%PlotOutline, "scale", Vector3(0.935, 0.935, 0.935), 0.5).set_trans(Tween.TRANS_CUBIC)
+	##defocusTween.finished.connect(func(): if self != PlotSpace.focusPlot: %PlotOutline.hide())
+	%PlotOutline.hide()
+	
 func _process(delta: float) -> void:
 	pass
 
@@ -114,4 +131,15 @@ func _on_plot_collision_input_event(camera: Node, event: InputEvent, event_posit
 
 func _on_purchase_picker_option_chosen(type: Development.DevelopmentType) -> void:
 	develop(type)
-	get_parent().focusPlot = null
+	PlotSpace.focusPlot.defocus()
+
+
+func _on_plot_collision_mouse_entered() -> void:
+	if PlotSpace.focusPlot or availabilityState != Availability.BOUGHT: return
+	show_plot_outline()
+	%PlotOutline.set_surface_override_material(0, plotHighlightOutline)
+	
+
+func _on_plot_collision_mouse_exited() -> void:
+	if PlotSpace.focusPlot or availabilityState != Availability.BOUGHT: return
+	hide_plot_outline()

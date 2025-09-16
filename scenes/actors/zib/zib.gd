@@ -8,6 +8,9 @@ signal work_completed(amount: int)
 @export var maxFlightSpeed: float = 9
 @export var maxWanderSpeed: float = 5
 
+var zibFaceMat: Material = preload("res://scenes/actors/zib/material/zibface.tres")
+var zibFaceTiredMat: Material = preload("res://scenes/actors/zib/material/zibfacetired.tres")
+
 var zibVelocity: Vector3
 
 var assignedPlot: Plot = null
@@ -74,8 +77,14 @@ func work_wander(delta: float) -> void:
 		workTarget.global_position = assignedPlot.global_position + Vector3(randX, 0, randZ)
 	global_position = global_position.move_toward(workTarget.global_position, maxWanderSpeed*delta)
 
+
+func make_zib_untired() -> void:
+	isZibTired = false
+	%ZibBody.set_surface_override_material(0, zibFaceMat)
+
 func make_zib_tired() -> void:
 	isZibTired = true
+	%ZibBody.set_surface_override_material(0, zibFaceTiredMat)
 
 func make_work(delta: float) -> void:
 	zibWorkProgress += zibWorkEffective * delta

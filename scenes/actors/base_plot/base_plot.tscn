@@ -32,4 +32,6 @@ visible = false
 surface_material_override/0 = ExtResource("4_7qukm")
 
 [connection signal="input_event" from="PlotCollision" to="." method="_on_plot_collision_input_event"]
+[connection signal="mouse_entered" from="PlotCollision" to="." method="_on_plot_collision_mouse_entered"]
+[connection signal="mouse_exited" from="PlotCollision" to="." method="_on_plot_collision_mouse_exited"]
 [connection signal="option_chosen" from="PurchasePicker" to="." method="_on_purchase_picker_option_chosen"]

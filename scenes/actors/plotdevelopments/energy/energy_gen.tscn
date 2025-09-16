@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://co1bkrp65g0vs"]
+[gd_scene load_steps=5 format=3 uid="uid://co1bkrp65g0vs"]
 
 [ext_resource type="PackedScene" uid="uid://b015k1yn15a7c" path="res://assets/plot_developments/EnergyGenIsland.blend" id="1_xe1l2"]
 [ext_resource type="Script" uid="uid://nyoq8o4rqvoc" path="res://scenes/actors/plotdevelopments/energy/energy_gen.gd" id="2_qjhcn"]
 [ext_resource type="Material" uid="uid://cocc5ouw71hc5" path="res://shaders/outlineshader.tres" id="3_hpkmb"]
+[ext_resource type="Material" uid="uid://7wbqquq8c83u" path="res://shaders/Highlight.tres" id="4_1tf5m"]
 
 [node name="EnergyGenIsland" node_paths=PackedStringArray("orbitCenter") instance=ExtResource("1_xe1l2")]
 script = ExtResource("2_qjhcn")
@@ -10,6 +11,7 @@ orbitCenter = NodePath("TowerCenter")
 orbitRadius = 4.0
 zibWorkingCapacity = 4
 workType = 1
+zibCountBaseMultiplier = 1.5
 
 [node name="Tower" parent="." index="0"]
 surface_material_override/1 = ExtResource("3_hpkmb")
@@ -25,4 +27,4 @@ surface_material_override/1 = ExtResource("3_hpkmb")
 surface_material_override/2 = ExtResource("3_hpkmb")
 
 [node name="Switch" parent="." index="6"]
-surface_material_override/1 = ExtResource("3_hpkmb")
+surface_material_override/1 = ExtResource("4_1tf5m")

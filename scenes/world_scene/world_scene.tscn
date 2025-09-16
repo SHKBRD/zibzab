@@ -33,19 +33,7 @@ script = ExtResource("1_cih2l")
 [node name="MainGameUI" parent="." instance=ExtResource("2_sgpo1")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
 environment = SubResource("Environment_l4v6i")
-camera_attributes = null
-compositor = null
-script = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(2576.82, 0, 0, 0, 1, 0, 0, 0, 2576.82, 0, 0, 0)
@@ -61,7 +49,6 @@ script = ExtResource("2_mh22i")
 
 [node name="BasePlot" parent="Plots" instance=ExtResource("2_bn180")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.141158, 0.876557, 0.0159931)
-visible = false
 
 [node name="ZIbs" type="Node3D" parent="."]
 

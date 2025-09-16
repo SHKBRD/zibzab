@@ -1,0 +1,29 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://7wbqquq8c83u"]
+
+[sub_resource type="Shader" id="Shader_pfcvo"]
+code = "shader_type spatial;
+render_mode unshaded;
+
+const vec3 color1 = vec3(0.0);
+const vec3 color2 = vec3(0.0, 1.0, 1.0);
+const float timeSpeedFactor = 8.0;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	float mixFactor = (sin(TIME*timeSpeedFactor) + 1.0)/2.0;
+	
+	ALBEDO.rgb = mix(color1, color2, mixFactor);
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the material.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[resource]
+render_priority = 0
+shader = SubResource("Shader_pfcvo")

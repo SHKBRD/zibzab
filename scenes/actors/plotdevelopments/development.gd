@@ -25,14 +25,20 @@ static var devTypeClassNames: Dictionary[DevelopmentType, GDScript] = {
 	DevelopmentType.ZIB_MAKER: ZibMakerDevelopment
 }
 
+@export_category("Orbit Values")
 @export var orbitCenter: Node3D
 @export var orbitRadius: float
 @export var orbitRotateSpeed: float = 90
 
+@export_category("Zib Capacity")
 @export var zibWorkingCapacity: int
 @export var workType: WorkType
 
+@export_category("Incremental Values")
+@export var zibCountBaseMultiplier: float = 1.25
+
 var assignedZibs: Array[Zib]
+
 
 func _ready() -> void:
 	zibPathsSetup(zibWorkingCapacity)
@@ -73,8 +79,23 @@ func on_zib_work_completed(amount: int, zib: Zib) -> void:
 	for applyAmount: int in amount:
 		apply_calculated_work_value()
 
-func apply_calculated_work_value() -> void:
+# This returns the 
+func get_per_zib_zib_count_multiplier() -> float:
+	var zibCount: int = 0
+	for zib: Zib in assignedZibs:
+		if zib != null: zibCount += 1
+	if zibCount == 0: return 0
+	return pow(zibCountBaseMultiplier, zibCount-1)
+
+func produce_energy_from_work() -> void:
+	var initialEnergy = get_per_zib_zib_count_multiplier()
+	Incrementals.energy += initialEnergy
+
+func produce_zabs_from_work() -> void:
 	pass
+
+func apply_calculated_work_value() -> void:
+	assert(false, "Override apply_calculated_work_value!")
 
 func _process(delta: float) -> void:
 	if orbitCenter:
