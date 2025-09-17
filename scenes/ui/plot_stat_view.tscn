@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://c17inrixdwc2f"]
+
+[ext_resource type="Theme" uid="uid://ybsb47jn85e1" path="res://scenes/ui/plot_stat_view_theme.tres" id="1_camv0"]
+[ext_resource type="Script" uid="uid://c1v8gdto64bn4" path="res://scenes/ui/plot_stat_view.gd" id="1_vp3rf"]
+[ext_resource type="PackedScene" uid="uid://dpqspu3yqfba2" path="res://scenes/ui/plot_stat_text.tscn" id="3_074fc"]
+
+[node name="Control" type="CenterContainer"]
+custom_minimum_size = Vector2(300, 512)
+offset_right = 300.0
+offset_bottom = 512.0
+
+[node name="PlotStatView" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme = ExtResource("1_camv0")
+script = ExtResource("1_vp3rf")
+
+[node name="VBox" type="VBoxContainer" parent="PlotStatView"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="PlotName" parent="PlotStatView/VBox" instance=ExtResource("3_074fc")]
+layout_mode = 2
+text = "[b]Main Generator[/b]"
+
+[node name="PlotDescription" parent="PlotStatView/VBox" instance=ExtResource("3_074fc")]
+layout_mode = 2
+text = "[i]This is the first source of Zib energy, which also stores all of the energy and zabs you own.[/i]"

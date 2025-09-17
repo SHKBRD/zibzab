@@ -1,12 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://dogm3jw7h567q"]
+[gd_scene load_steps=8 format=3 uid="uid://dogm3jw7h567q"]
 
 [ext_resource type="PackedScene" uid="uid://b4hfbgv8y14gq" path="res://assets/plot_developments/BasePlot.blend" id="1_rrv6o"]
 [ext_resource type="Script" uid="uid://3h7s2jlc4f7r" path="res://scenes/actors/base_plot/base_plot.gd" id="2_oemfn"]
 [ext_resource type="PackedScene" uid="uid://b434msy1r6nt3" path="res://scenes/actors/base_plot/developpicker/purchase_picker.tscn" id="3_pfcvo"]
 [ext_resource type="Material" uid="uid://cocc5ouw71hc5" path="res://shaders/outlineshader.tres" id="4_7qukm"]
+[ext_resource type="PackedScene" uid="uid://c17inrixdwc2f" path="res://scenes/ui/plot_stat_view.tscn" id="5_h3pxj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oemfn"]
 size = Vector3(16, 1.5, 16)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7qukm"]
+viewport_path = NodePath("Sprite3D/SubViewport")
 
 [node name="BasePlot" instance=ExtResource("1_rrv6o")]
 script = ExtResource("2_oemfn")
@@ -30,6 +34,18 @@ visible = false
 unique_name_in_owner = true
 visible = false
 surface_material_override/0 = ExtResource("4_7qukm")
+
+[node name="Sprite3D" type="Sprite3D" parent="." index="5"]
+pixel_size = 0.035
+billboard = 1
+no_depth_test = true
+texture = SubResource("ViewportTexture_7qukm")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D" index="0"]
+transparent_bg = true
+size = Vector2i(300, 512)
+
+[node name="PlotStatView" parent="Sprite3D/SubViewport" index="0" instance=ExtResource("5_h3pxj")]
 
 [connection signal="input_event" from="PlotCollision" to="." method="_on_plot_collision_input_event"]
 [connection signal="mouse_entered" from="PlotCollision" to="." method="_on_plot_collision_mouse_entered"]
