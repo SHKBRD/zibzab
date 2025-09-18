@@ -8,12 +8,12 @@
 custom_minimum_size = Vector2(300, 512)
 offset_right = 300.0
 offset_bottom = 512.0
+script = ExtResource("1_vp3rf")
 
 [node name="PlotStatView" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme = ExtResource("1_camv0")
-script = ExtResource("1_vp3rf")
 
 [node name="VBox" type="VBoxContainer" parent="PlotStatView"]
 unique_name_in_owner = true
@@ -21,9 +21,11 @@ layout_mode = 2
 size_flags_vertical = 4
 
 [node name="PlotName" parent="PlotStatView/VBox" instance=ExtResource("3_074fc")]
+unique_name_in_owner = true
 layout_mode = 2
 text = "[b]Main Generator[/b]"
 
 [node name="PlotDescription" parent="PlotStatView/VBox" instance=ExtResource("3_074fc")]
+unique_name_in_owner = true
 layout_mode = 2
 text = "[i]This is the first source of Zib energy, which also stores all of the energy and zabs you own.[/i]"

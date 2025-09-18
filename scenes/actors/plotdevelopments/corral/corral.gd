@@ -10,4 +10,6 @@ func on_zib_work_completed(amount: int, zib: Zib) -> void:
 	
 	if zib.workCompleted == 0:
 		zib.make_zib_untired()
-	
+
+func update_plot_hud_development_specific() -> void:
+	pass

@@ -20,6 +20,13 @@ var spaceType: Development.DevelopmentType = Development.DevelopmentType.NONE
 
 func get_development() -> Development:
 	return %BuildingDevelopment.get_child(0)
+	
+func get_plot_hud() -> PlotStatView:
+	return %PlotStatView
+
+func get_energy_per_second() -> float:
+	var developmentMultBonus: float = get_development().get_energy_bonus()
+	return Incrementals.get_applied_zib_energy_mult()
 
 func _ready() -> void:
 	var smallScale: Vector3 = Vector3(0.001, 0.001, 0.001)
@@ -107,6 +114,8 @@ func defocus() -> void:
 func show_plot_outline() -> void:
 	#var focusTween: Tween = get_tree().create_tween()
 	%PlotOutline.show()
+	%PlotStatView.show()
+	
 	#focusTween.tween_property(%PlotOutline, "scale", Vector3(1, 1, 1), 0.5).set_trans(Tween.TRANS_CUBIC)
 
 func hide_plot_outline() -> void:
@@ -115,6 +124,8 @@ func hide_plot_outline() -> void:
 	#defocusTween.tween_property(%PlotOutline, "scale", Vector3(0.935, 0.935, 0.935), 0.5).set_trans(Tween.TRANS_CUBIC)
 	##defocusTween.finished.connect(func(): if self != PlotSpace.focusPlot: %PlotOutline.hide())
 	%PlotOutline.hide()
+	%PlotStatView.hide()
+	
 	
 func _process(delta: float) -> void:
 	pass
@@ -143,3 +154,4 @@ func _on_plot_collision_mouse_entered() -> void:
 func _on_plot_collision_mouse_exited() -> void:
 	if PlotSpace.focusPlot or availabilityState != Availability.BOUGHT: return
 	hide_plot_outline()
+	
