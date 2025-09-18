@@ -37,11 +37,30 @@ static var devTypeClassNames: Dictionary[DevelopmentType, GDScript] = {
 @export_category("Incremental Values")
 @export var zibCountBaseMultiplier: float = 1.25
 
+@export_category("PlotHUDTexts")
+@export var plotHUDTitle: String = "OVERRIDE ME"
+@export var plotHUDDescription: String = "OVERRIDE ME"
+
 var assignedZibs: Array[Zib]
 
 
+func get_energy_bonus() -> float:
+	return get_per_zib_zib_count_multiplier()
+
 func _ready() -> void:
 	zibPathsSetup(zibWorkingCapacity)
+	update_plot_hud()
+
+func update_plot_hud_name_description() -> void:
+	var plotHud: PlotStatView = get_parent().get_parent().get_plot_hud()
+	plotHud.update_name_description(plotHUDTitle, plotHUDDescription)
+
+func update_plot_hud_development_specific() -> void:
+	assert(false, "OVERRIDE THIS METHOD")
+
+func update_plot_hud() -> void:
+	update_plot_hud_name_description()
+	update_plot_hud_development_specific()
 
 func zibPathsSetup(capacity: int) -> void:
 	if orbitCenter == null: return
@@ -89,7 +108,7 @@ func get_per_zib_zib_count_multiplier() -> float:
 
 func produce_energy_from_work() -> void:
 	var initialEnergy = get_per_zib_zib_count_multiplier()
-	Incrementals.energy += initialEnergy
+	Incrementals.add_energy(initialEnergy)
 
 func produce_zabs_from_work() -> void:
 	pass

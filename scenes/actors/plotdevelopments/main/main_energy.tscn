@@ -10,6 +10,8 @@ orbitCenter = NodePath("TowerCenter")
 orbitRadius = 5.0
 zibWorkingCapacity = 8
 workType = 1
+plotHUDTitle = "Main Generator"
+plotHUDDescription = "This is the first source of Zib energy, which also stores all of the energy and zabs you own."
 
 [node name="Sphere" parent="." index="0"]
 surface_material_override/1 = ExtResource("3_v78eq")

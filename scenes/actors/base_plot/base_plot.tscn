@@ -46,6 +46,8 @@ transparent_bg = true
 size = Vector2i(300, 512)
 
 [node name="PlotStatView" parent="Sprite3D/SubViewport" index="0" instance=ExtResource("5_h3pxj")]
+unique_name_in_owner = true
+visible = false
 
 [connection signal="input_event" from="PlotCollision" to="." method="_on_plot_collision_input_event"]
 [connection signal="mouse_entered" from="PlotCollision" to="." method="_on_plot_collision_mouse_entered"]

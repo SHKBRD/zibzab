@@ -39,6 +39,10 @@ enum ZibState {
 
 var zibState: ZibState = ZibState.IDLE
 
+func get_energy_per_second() -> float:
+	if not assignedPlot or assignedPlot.get_development().workType != Development.WorkType.ORBIT: return 0
+	return assignedPlot.get_energy_per_second() * zibWorkEffective
+
 func _ready() -> void:
 	var smallScale: Vector3 = Vector3(0.001, 0.001, 0.001)
 	%SelectedSprite.scale = smallScale

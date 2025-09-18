@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://xocqy32u24l3"]
+[gd_scene load_steps=21 format=4 uid="uid://xocqy32u24l3"]
 
 [ext_resource type="Script" uid="uid://cucgq3i7twnbo" path="res://scenes/actors/zib/zib.gd" id="1_slnxu"]
 [ext_resource type="Texture2D" uid="uid://cj5rqvasoaete" path="res://assets/Zib/ZibFace.png" id="2_885ux"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://gy1vtof5ct45" path="res://assets/Zib/ZibFloat.png" id="5_0gkmm"]
 [ext_resource type="Material" uid="uid://p0qqgx2k8rie" path="res://shaders/blue.tres" id="5_oysou"]
 [ext_resource type="Texture2D" uid="uid://5aqh7fplnun0" path="res://assets/Zib/SpinBack.png" id="8_hp1m1"]
+[ext_resource type="PackedScene" uid="uid://c17inrixdwc2f" path="res://scenes/ui/plot_stat_view.tscn" id="9_hp1m1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gw5j2"]
 resource_name = "Material"
@@ -129,6 +130,9 @@ shadow_mesh = SubResource("ArrayMesh_myvad")
 [sub_resource type="SphereShape3D" id="SphereShape3D_slnxu"]
 radius = 1.0
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_th5pv"]
+viewport_path = NodePath("InfoSprite/SubViewport")
+
 [node name="Zib" type="Node3D"]
 script = ExtResource("1_slnxu")
 
@@ -178,4 +182,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ZibHitbox"]
 shape = SubResource("SphereShape3D_slnxu")
 
+[node name="InfoSprite" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.3344574, 0)
+billboard = 1
+no_depth_test = true
+render_priority = 2
+texture = SubResource("ViewportTexture_th5pv")
+
+[node name="SubViewport" type="SubViewport" parent="InfoSprite"]
+transparent_bg = true
+size = Vector2i(300, 512)
+
+[node name="Control" parent="InfoSprite/SubViewport" instance=ExtResource("9_hp1m1")]
+
 [connection signal="input_event" from="ZibHitbox" to="." method="_on_zib_hitbox_input_event"]
+
+[editable path="InfoSprite/SubViewport/Control"]

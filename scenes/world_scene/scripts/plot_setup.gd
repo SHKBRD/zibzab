@@ -28,10 +28,13 @@ func _ready() -> void:
 
 func on_plot_focused(plot: Plot) -> void:
 	# if focusplot is set to the plot it already has, this makes focusPlot null
+	var initFocusPlot: Plot = focusPlot
 	if focusPlot:
 		focusPlot.defocus()
 		
-	if focusPlot != plot:
+
+		
+	if initFocusPlot != plot:
 		focusPlot = plot
 		focusPlot.focus()
 	else:
