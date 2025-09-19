@@ -82,6 +82,7 @@ func focus() -> void:
 		focusTween.tween_property(%PurchasePicker, "scale", Vector3(1, 1, 1), 0.5).set_trans(Tween.TRANS_CUBIC)
 	elif availabilityState == Availability.BOUGHT:
 		show_plot_outline()
+		%PlotStatView.show()
 		%PlotOutline.set_surface_override_material(0, plotBlackOutline)
 		
 		var selectedZibs: Array = get_tree().get_nodes_in_group("SelectedZibs")
@@ -102,6 +103,7 @@ func focus() -> void:
 
 func defocus() -> void:
 	hide_plot_outline()
+	%PlotStatView.hide()
 	if availabilityState == Availability.BUYABLE || availabilityState == Availability.BOUGHT:
 		var defocusTween: Tween = get_tree().create_tween()
 		defocusTween.tween_property(%PurchasePicker, "scale", Vector3(0.001, 0.001, 0.001), 0.5).set_trans(Tween.TRANS_CUBIC)
@@ -114,7 +116,7 @@ func defocus() -> void:
 func show_plot_outline() -> void:
 	#var focusTween: Tween = get_tree().create_tween()
 	%PlotOutline.show()
-	%PlotStatView.show()
+	
 	
 	#focusTween.tween_property(%PlotOutline, "scale", Vector3(1, 1, 1), 0.5).set_trans(Tween.TRANS_CUBIC)
 
@@ -124,7 +126,7 @@ func hide_plot_outline() -> void:
 	#defocusTween.tween_property(%PlotOutline, "scale", Vector3(0.935, 0.935, 0.935), 0.5).set_trans(Tween.TRANS_CUBIC)
 	##defocusTween.finished.connect(func(): if self != PlotSpace.focusPlot: %PlotOutline.hide())
 	%PlotOutline.hide()
-	%PlotStatView.hide()
+	
 	
 	
 func _process(delta: float) -> void:

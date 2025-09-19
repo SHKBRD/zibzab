@@ -1,11 +1,25 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bb7o4l4c5rie2"]
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bb7o4l4c5rie2"]
 
 [ext_resource type="Texture2D" uid="uid://cj5rqvasoaete" path="res://assets/Zib/ZibFace.png" id="1_n7yev"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xdpnu"]
+render_priority = 1
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
 [resource]
 resource_name = "Material"
+next_pass = SubResource("StandardMaterial3D_xdpnu")
 albedo_color = Color(0, 0, 0, 1)
 metallic = 1.0
 emission_enabled = true
 emission_texture = ExtResource("1_n7yev")
 texture_repeat = false
+stencil_mode = 2
+stencil_flags = 2
+stencil_color = Color(1, 1, 1, 1)

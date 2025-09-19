@@ -121,8 +121,17 @@ func process_zib_state(delta: float) -> void:
 		_:
 			pass
 
+func turn_towards_position(effective_direction: Vector3, strength: float) -> void:
+	var forward_vector: Vector3 = %ZibBody.basis.x
+	forward_vector *= Vector3(1, 0, 1)
+	effective_direction *= Vector3(1, 0, 1)
+	var angleDistance: float = forward_vector.angle_to(effective_direction)
+	%ZibBody.rotate_y(angleDistance * strength)
+
 func _process(delta: float) -> void:
+	var old_position: Vector3 = position
 	process_zib_state(delta)
+	turn_towards_position(position-old_position, 0.2)
 
 
 func on_deselected() -> void:
@@ -149,3 +158,11 @@ func _on_zib_hitbox_input_event(camera: Node, event: InputEvent, event_position:
 			if isSelected: on_deselected() 
 			else: on_selected()
 		print(get_tree().get_nodes_in_group("SelectedZibs"))
+
+
+func _on_zib_hitbox_mouse_entered() -> void:
+	%InfoSprite.show()
+
+
+func _on_zib_hitbox_mouse_exited() -> void:
+	%InfoSprite.hide()

@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dxnr8i7gcfe0s"]
+
+[ext_resource type="Shader" uid="uid://dcyibj27bicqo" path="res://scenes/actors/zib/shader/zibshockoutline.gdshader" id="1_qs1wt"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_qs1wt")

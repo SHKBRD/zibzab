@@ -6,9 +6,9 @@
 [ext_resource type="Material" uid="uid://cocc5ouw71hc5" path="res://shaders/outlineshader.tres" id="3_anss5"]
 [ext_resource type="Material" uid="uid://ot0yo2qbo2q2" path="res://scenes/actors/zib/material/zibfloats.tres" id="4_aoioy"]
 [ext_resource type="Texture2D" uid="uid://gy1vtof5ct45" path="res://assets/Zib/ZibFloat.png" id="5_0gkmm"]
-[ext_resource type="Material" uid="uid://p0qqgx2k8rie" path="res://shaders/blue.tres" id="5_oysou"]
+[ext_resource type="Material" uid="uid://dxnr8i7gcfe0s" path="res://scenes/actors/zib/material/zibshockoutline.tres" id="5_hp1m1"]
 [ext_resource type="Texture2D" uid="uid://5aqh7fplnun0" path="res://assets/Zib/SpinBack.png" id="8_hp1m1"]
-[ext_resource type="PackedScene" uid="uid://c17inrixdwc2f" path="res://scenes/ui/plot_stat_view.tscn" id="9_hp1m1"]
+[ext_resource type="PackedScene" uid="uid://bmtm23jsihpw7" path="res://scenes/ui/zib_stat_view.tscn" id="9_hp1m1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gw5j2"]
 resource_name = "Material"
@@ -148,6 +148,7 @@ surface_material_override/0 = ExtResource("2_myh30")
 [node name="ZibBodyOutline" type="MeshInstance3D" parent="ZibMeshes"]
 unique_name_in_owner = true
 transform = Transform3D(3.57628e-07, 0, 1, 0, 1, 0, -1, 0, 3.57628e-07, 0, 0, 0)
+visible = false
 mesh = SubResource("ArrayMesh_cksgm")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("3_anss5")
@@ -155,10 +156,9 @@ surface_material_override/0 = ExtResource("3_anss5")
 [node name="ZibBodyBlueOutline" type="MeshInstance3D" parent="ZibMeshes"]
 unique_name_in_owner = true
 transform = Transform3D(3.57628e-07, 0, 1, 0, 1, 0, -1, 0, 3.57628e-07, 0, 0, 0)
-visible = false
 mesh = SubResource("ArrayMesh_cksgm")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("5_oysou")
+surface_material_override/0 = ExtResource("5_hp1m1")
 
 [node name="ZibFloat" type="MeshInstance3D" parent="ZibMeshes"]
 unique_name_in_owner = true
@@ -183,9 +183,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("SphereShape3D_slnxu")
 
 [node name="InfoSprite" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.3344574, 0)
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.850287, 0)
+visible = false
+pixel_size = 0.002
 billboard = 1
 no_depth_test = true
+fixed_size = true
 render_priority = 2
 texture = SubResource("ViewportTexture_th5pv")
 
@@ -196,5 +200,5 @@ size = Vector2i(300, 512)
 [node name="Control" parent="InfoSprite/SubViewport" instance=ExtResource("9_hp1m1")]
 
 [connection signal="input_event" from="ZibHitbox" to="." method="_on_zib_hitbox_input_event"]
-
-[editable path="InfoSprite/SubViewport/Control"]
+[connection signal="mouse_entered" from="ZibHitbox" to="." method="_on_zib_hitbox_mouse_entered"]
+[connection signal="mouse_exited" from="ZibHitbox" to="." method="_on_zib_hitbox_mouse_exited"]
