@@ -13,3 +13,9 @@ func _on_hitbox_input_event(camera: Node, event: InputEvent, event_position: Vec
 	if event is InputEventMouseButton:
 		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			chosen.emit(developmentType)
+
+func enable() -> void:
+	%PickerCollision.disabled = false
+
+func disable() -> void:
+	%PickerCollision.disabled = true

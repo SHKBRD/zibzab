@@ -16,7 +16,10 @@ var zibVelocity: Vector3
 var assignedPlot: Plot = null
 
 # var targetHeadingPlot: Plot = null
-var workTarget: Node3D = null
+var workTarget: Node3D = null:
+	set(value):
+		print(value)
+		workTarget = value
 var workConnect: float = 0
 var workConnectDelay: float = 0.05
 
@@ -35,6 +38,12 @@ enum ZibState {
 	PLOT_HEADING,
 	#WORK_HEADING,
 	WORKING,
+}
+
+var stateToString: Dictionary[ZibState, String] = {
+	ZibState.IDLE: "Idle",
+	ZibState.PLOT_HEADING: "Moving",
+	ZibState.WORKING: "Working",
 }
 
 var zibState: ZibState = ZibState.IDLE
@@ -94,7 +103,7 @@ func make_work(delta: float) -> void:
 	zibWorkProgress += zibWorkEffective * delta
 	
 	var workAchieved: int = floor(zibWorkProgress)
-	assignedPlot.get_development().on_zib_work_completed(workAchieved, self)
+	var tireZib: bool = assignedPlot.get_development().on_zib_work_completed(workAchieved, self)
 	for workTime: int in workAchieved:
 		zibWorkProgress -= 1
 		workCompleted += 1
@@ -112,7 +121,7 @@ func process_zib_state(delta: float) -> void:
 			
 			# transitioning to work based on proximty to plot
 			var unitDistance: Vector3 = (assignedPlot.global_position - global_position).abs()
-			if unitDistance.x < 8 or unitDistance.z < 8:
+			if unitDistance.x < 8 and unitDistance.z < 8:
 				zibState = ZibState.WORKING
 		ZibState.WORKING:
 			plot_move(delta)
@@ -132,6 +141,8 @@ func _process(delta: float) -> void:
 	var old_position: Vector3 = position
 	process_zib_state(delta)
 	turn_towards_position(position-old_position, 0.2)
+	if name == "Zib":
+		print(workTarget)
 
 
 func on_deselected() -> void:
@@ -150,6 +161,7 @@ func on_selected() -> void:
 	
 	var selectTween: Tween = get_tree().create_tween()
 	selectTween.tween_property(%SelectedSprite, "scale", Vector3(1, 1, 1), 0.25)
+	%InfoSprite.hide()
 
 
 func _on_zib_hitbox_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
@@ -159,8 +171,12 @@ func _on_zib_hitbox_input_event(camera: Node, event: InputEvent, event_position:
 			else: on_selected()
 		print(get_tree().get_nodes_in_group("SelectedZibs"))
 
+func update_info_sprite() -> void:
+	%ZibStatView.update_status(stateToString[zibState])
+	pass
 
 func _on_zib_hitbox_mouse_entered() -> void:
+	update_info_sprite()
 	%InfoSprite.show()
 
 

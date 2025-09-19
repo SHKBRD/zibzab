@@ -25,6 +25,11 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "[b]Main Generator[/b]"
 
+[node name="PlotAssignedZibs" parent="PlotStatView/VBox" instance=ExtResource("3_074fc")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "[i]Assigned Zibs: 0/8[/i]"
+
 [node name="PlotDescription" parent="PlotStatView/VBox" instance=ExtResource("3_074fc")]
 unique_name_in_owner = true
 layout_mode = 2

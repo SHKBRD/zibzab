@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7ursfch41qa0"]
+
+[ext_resource type="Script" uid="uid://c232jfu4rayo1" path="res://scenes/ui/cost_sprite.gd" id="1_g8mhq"]
+[ext_resource type="PackedScene" uid="uid://dpqspu3yqfba2" path="res://scenes/ui/plot_stat_text.tscn" id="2_aabsq"]
+[ext_resource type="Theme" uid="uid://ybsb47jn85e1" path="res://scenes/ui/plot_stat_view_theme.tres" id="2_jndjy"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jndjy"]
+viewport_path = NodePath("SubViewport")
+
+[node name="CostSprite" type="Sprite3D"]
+pixel_size = 0.0015
+billboard = 1
+fixed_size = true
+texture = SubResource("ViewportTexture_jndjy")
+script = ExtResource("1_g8mhq")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(200, 512)
+
+[node name="CenterContainer" type="CenterContainer" parent="SubViewport"]
+custom_minimum_size = Vector2(200, 512)
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("2_jndjy")
+
+[node name="PanelContainer" type="PanelContainer" parent="SubViewport/CenterContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("2_jndjy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/CenterContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="CostTitle" parent="SubViewport/CenterContainer/PanelContainer/VBoxContainer" instance=ExtResource("2_aabsq")]
+layout_mode = 2
+text = "COST:"
+
+[node name="CostEnergy" parent="SubViewport/CenterContainer/PanelContainer/VBoxContainer" instance=ExtResource("2_aabsq")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CostZab" parent="SubViewport/CenterContainer/PanelContainer/VBoxContainer" instance=ExtResource("2_aabsq")]
+unique_name_in_owner = true
+layout_mode = 2

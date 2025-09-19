@@ -43,6 +43,12 @@ static var devTypeClassNames: Dictionary[DevelopmentType, GDScript] = {
 
 var assignedZibs: Array[Zib]
 
+func get_no_null_assigned_zib_list() -> Array[Zib]:
+	var assembleList: Array[Zib] = []
+	for zib: Zib in assignedZibs:
+		if zib != null:
+			assembleList.append(zib)
+	return assembleList
 
 func get_energy_bonus() -> float:
 	return get_per_zib_zib_count_multiplier()
@@ -87,16 +93,19 @@ func assignZib(zib: Zib) -> void:
 	if workType == WorkType.ORBIT or workType == WorkType.UPGRADE:
 		var zibId: int = assignedZibs.find(zib)
 		print(zibId)
-		zib.workTarget = orbitCenter.get_child(zibId)
+		var foundFollowNode: Node3D = orbitCenter.get_child(zibId)
+		zib.workTarget = foundFollowNode
+		pass
 	if workType == WorkType.WANDER:
 		pass
 	zib.assignedPlot = get_parent().get_parent()
 	pass
 
-func on_zib_work_completed(amount: int, zib: Zib) -> void:
-	
+func on_zib_work_completed(amount: int, zib: Zib) -> bool:
+	var tired: bool = true
 	for applyAmount: int in amount:
-		apply_calculated_work_value()
+		tired = apply_calculated_work_value()
+	return tired
 
 # This returns the 
 func get_per_zib_zib_count_multiplier() -> float:
@@ -113,8 +122,9 @@ func produce_energy_from_work() -> void:
 func produce_zabs_from_work() -> void:
 	pass
 
-func apply_calculated_work_value() -> void:
+func apply_calculated_work_value() -> bool:
 	assert(false, "Override apply_calculated_work_value!")
+	return true
 
 func _process(delta: float) -> void:
 	if orbitCenter:

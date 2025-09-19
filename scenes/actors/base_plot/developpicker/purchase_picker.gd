@@ -7,7 +7,14 @@ func _ready() -> void:
 	pass
 
 func on_development_chosen(type: Development.DevelopmentType) -> void:
+	if get_tree().get_nodes_in_group("Selected Zibs").size() != 0: return 
 	option_chosen.emit(type)
-	for option: PickerOption in %DevelopmentOptions.get_children():
-		option.get_node("Hitbox/CollisionShape3D").disabled = true
+	disable_options()
 		
+func disable_options() -> void:
+	for option: PickerOption in %DevelopmentOptions.get_children():
+		option.disable()
+
+func enable_options() -> void:
+	for option: PickerOption in %DevelopmentOptions.get_children():
+		option.enable()

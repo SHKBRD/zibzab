@@ -21,6 +21,3 @@ surface_material_override/1 = ExtResource("3_5xysu")
 
 [node name="Cube_001" parent="." index="2"]
 surface_material_override/2 = ExtResource("3_5xysu")
-
-[node name="ZibHolder" parent="." index="3"]
-surface_material_override/2 = ExtResource("3_5xysu")

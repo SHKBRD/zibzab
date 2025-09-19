@@ -5,6 +5,8 @@ var energyGoal: float = 1_000_000_000
 var energy: float = 0
 var zabs: float = 0
 
+var perZibMultCostIncrease: float = 1.25
+
 var energyMults: Dictionary[String, float] = {
 	"baseMult": 1.0
 }

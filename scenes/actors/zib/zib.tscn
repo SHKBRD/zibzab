@@ -197,7 +197,8 @@ texture = SubResource("ViewportTexture_th5pv")
 transparent_bg = true
 size = Vector2i(300, 512)
 
-[node name="Control" parent="InfoSprite/SubViewport" instance=ExtResource("9_hp1m1")]
+[node name="ZibStatView" parent="InfoSprite/SubViewport" instance=ExtResource("9_hp1m1")]
+unique_name_in_owner = true
 
 [connection signal="input_event" from="ZibHitbox" to="." method="_on_zib_hitbox_input_event"]
 [connection signal="mouse_entered" from="ZibHitbox" to="." method="_on_zib_hitbox_mouse_entered"]

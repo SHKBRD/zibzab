@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://ybsb47jn85e1"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://ybsb47jn85e1"]
 
 [ext_resource type="FontFile" uid="uid://bq3d1bmayfu3l" path="res://assets/fonts/Montserrat/static/Montserrat-BlackItalic.ttf" id="1_or4yo"]
+[ext_resource type="FontFile" uid="uid://c5trwck28e37r" path="res://assets/fonts/Montserrat/static/Montserrat-Regular.ttf" id="2_413kh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_413kh"]
 content_margin_left = 10.0
@@ -34,3 +35,4 @@ Button/colors/font_color = Color(0, 0, 0, 1)
 Button/fonts/font = ExtResource("1_or4yo")
 Button/styles/normal = SubResource("StyleBoxFlat_413kh")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_p4ttu")
+RichTextLabel/fonts/normal_font = ExtResource("2_413kh")

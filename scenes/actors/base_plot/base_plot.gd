@@ -73,16 +73,24 @@ func attempt_transfer_zib_to_this_plot(zib: Zib) -> bool:
 	zib.on_deselected()
 	return true
 
+func plot_stat_view_update() -> void:
+	var development: Development = get_development()
+	var assignedZibCount: int = development.get_no_null_assigned_zib_list().size()
+	
+	%PlotStatView.update_assigned_zibs(assignedZibCount, development.zibWorkingCapacity)
+
 #region focus code
 func focus() -> void:
 	
 	if availabilityState == Availability.BUYABLE:
 		%PurchasePicker.show()
 		var focusTween: Tween = get_tree().create_tween()
-		focusTween.tween_property(%PurchasePicker, "scale", Vector3(1, 1, 1), 0.5).set_trans(Tween.TRANS_CUBIC)
+		focusTween.tween_property(%PurchasePicker, "scale", Vector3(1, 1, 1), 0.25).set_trans(Tween.TRANS_CUBIC)
+		%PurchasePicker.enable_options()
 	elif availabilityState == Availability.BOUGHT:
 		show_plot_outline()
 		%PlotStatView.show()
+		plot_stat_view_update()
 		%PlotOutline.set_surface_override_material(0, plotBlackOutline)
 		
 		var selectedZibs: Array = get_tree().get_nodes_in_group("SelectedZibs")
@@ -107,8 +115,9 @@ func defocus() -> void:
 	%PlotStatView.hide()
 	if availabilityState == Availability.BUYABLE || availabilityState == Availability.BOUGHT:
 		var defocusTween: Tween = get_tree().create_tween()
-		defocusTween.tween_property(%PurchasePicker, "scale", Vector3(0.001, 0.001, 0.001), 0.5).set_trans(Tween.TRANS_CUBIC)
-		defocusTween.finished.connect(func(): %PurchasePicker.hide())
+		defocusTween.tween_property(%PurchasePicker, "scale", Vector3(0.001, 0.001, 0.001), 0.25).set_trans(Tween.TRANS_CUBIC)
+		defocusTween.finished.connect(func(): if %PurchasePicker.get_parent() != PlotSpace.focusPlot : %PurchasePicker.hide())
+		%PurchasePicker.disable_options()
 	else: 
 		pass
 	PlotSpace.focusPlot = null
@@ -149,12 +158,13 @@ func _on_purchase_picker_option_chosen(type: Development.DevelopmentType) -> voi
 
 
 func _on_plot_collision_mouse_entered() -> void:
-	if PlotSpace.focusPlot or availabilityState != Availability.BOUGHT: return
+	if availabilityState != Availability.BOUGHT: return
 	show_plot_outline()
-	%PlotOutline.set_surface_override_material(0, plotHighlightOutline)
+	if self != PlotSpace.focusPlot:
+		%PlotOutline.set_surface_override_material(0, plotHighlightOutline)
 	
 
 func _on_plot_collision_mouse_exited() -> void:
-	if PlotSpace.focusPlot or availabilityState != Availability.BOUGHT: return
+	if self == PlotSpace.focusPlot or availabilityState != Availability.BOUGHT: return
 	hide_plot_outline()
 	

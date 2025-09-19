@@ -9,13 +9,14 @@ enum GenerationType {
 
 var generationType: GenerationType = GenerationType.ENERGY
 
-func apply_calculated_work_value() -> void:
+func apply_calculated_work_value() -> bool:
 	if generationType == GenerationType.ENERGY:
 		produce_energy_from_work()
 	elif generationType == GenerationType.ZAB:
 		produce_zabs_from_work()
 	else:
 		assert(false, "WORK ISN'T WORKING IN THIS ENERGY/ZAB THING")
+	return true
 
 func update_plot_hud_development_specific() -> void:
 	pass
