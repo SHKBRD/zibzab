@@ -31,8 +31,15 @@ surface_material_override/2 = ExtResource("3_hpkmb")
 surface_material_override/1 = ExtResource("3_hpkmb")
 surface_material_override/2 = ExtResource("3_hpkmb")
 
+[node name="Energy" parent="." index="5"]
+unique_name_in_owner = true
+
 [node name="Switch" parent="." index="6"]
+unique_name_in_owner = true
 surface_material_override/1 = ExtResource("4_1tf5m")
+
+[node name="Zab" parent="." index="7"]
+unique_name_in_owner = true
 
 [node name="SwitchArea" type="Area3D" parent="." index="8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4111843, 0, -4.929982)
@@ -40,3 +47,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4111843, 0, -4.929982)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SwitchArea" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1052647, 4.201577, 0)
 shape = SubResource("BoxShape3D_1tf5m")
+
+[connection signal="input_event" from="SwitchArea" to="." method="_on_switch_area_input_event"]
+[connection signal="mouse_entered" from="SwitchArea" to="." method="_on_switch_area_mouse_entered"]
+[connection signal="mouse_exited" from="SwitchArea" to="." method="_on_switch_area_mouse_exited"]
