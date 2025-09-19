@@ -100,6 +100,7 @@ func focus() -> void:
 			defocus()
 			#get_tree().call_group("SelectedZibs", "move_to_plot", self)
 		pass
+	PlotSpace.focusPlot = self
 
 func defocus() -> void:
 	hide_plot_outline()
