@@ -29,3 +29,12 @@ text = "[b]Main Generator[/b]"
 unique_name_in_owner = true
 layout_mode = 2
 text = "[i]This is the first source of Zib energy, which also stores all of the energy and zabs you own.[/i]"
+
+[node name="PlotUpgradeButton" type="Button" parent="PlotStatView/VBox"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_camv0")
+text = "Upgrade!"
+
+[connection signal="pressed" from="PlotStatView/VBox/PlotUpgradeButton" to="." method="_on_button_pressed"]

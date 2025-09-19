@@ -1,19 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://d34o7awnqlgr3"]
+[gd_scene load_steps=5 format=3 uid="uid://d34o7awnqlgr3"]
 
-[ext_resource type="Texture2D" uid="uid://cv2cht2qc0t01" path="res://icon.svg" id="1_7s6ud"]
+[ext_resource type="PackedScene" uid="uid://cfhtv0iuacbep" path="res://scenes/actors/base_plot/developpicker/purchase_picker_option_hud.tscn" id="2_r58qd"]
 [ext_resource type="Script" uid="uid://wgucucf1ehhx" path="res://scenes/actors/base_plot/developpicker/purchase_picker_option.gd" id="2_x0ixm"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7s6ud"]
+viewport_path = NodePath("SubViewport")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_x0ixm"]
 radius = 1.5
 
 [node name="Sprite3D" type="Sprite3D"]
 sorting_offset = 0.075
-modulate = Color(1, 0, 0, 1)
 pixel_size = 0.02
 billboard = 1
 no_depth_test = true
 render_priority = 1
-texture = ExtResource("1_7s6ud")
+texture = SubResource("ViewportTexture_7s6ud")
 script = ExtResource("2_x0ixm")
 
 [node name="Hitbox" type="Area3D" parent="."]
@@ -21,5 +23,11 @@ unique_name_in_owner = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
 shape = SubResource("SphereShape3D_x0ixm")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(148, 512)
+
+[node name="CenterContainer" parent="SubViewport" instance=ExtResource("2_r58qd")]
 
 [connection signal="input_event" from="Hitbox" to="." method="_on_hitbox_input_event"]

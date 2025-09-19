@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfhtv0iuacbep"]
+
+[ext_resource type="Texture2D" uid="uid://bnhpquq2jmsob" path="res://assets/plot_developments/corralpreview.png" id="1_a8cxc"]
+
+[sub_resource type="Theme" id="Theme_x0ixm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8cxc"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 0.72156864)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="Theme" id="Theme_r58qd"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_a8cxc")
+
+[node name="CenterContainer" type="CenterContainer"]
+custom_minimum_size = Vector2(148, 512)
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_x0ixm")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+theme = SubResource("Theme_r58qd")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer"]
+layout_mode = 2
+texture = ExtResource("1_a8cxc")

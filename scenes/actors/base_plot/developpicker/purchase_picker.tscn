@@ -1,12 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://b434msy1r6nt3"]
+[gd_scene load_steps=12 format=3 uid="uid://b434msy1r6nt3"]
 
 [ext_resource type="Material" uid="uid://bhc7ccj2cmnml" path="res://shaders/gray.tres" id="1_icfd5"]
 [ext_resource type="Script" uid="uid://bqkftd8ig00e8" path="res://scenes/actors/base_plot/developpicker/purchase_picker.gd" id="1_oekk1"]
 [ext_resource type="PackedScene" uid="uid://d34o7awnqlgr3" path="res://scenes/actors/base_plot/developpicker/purchase_picker_option.tscn" id="2_icfd5"]
+[ext_resource type="Texture2D" uid="uid://bpx3q2budl6jy" path="res://assets/plot_developments/resourcemakerpreview.png" id="4_scge1"]
+[ext_resource type="Texture2D" uid="uid://b4ga82tgfp5xf" path="res://assets/plot_developments/chargerpreview.png" id="5_a33gn"]
+[ext_resource type="Texture2D" uid="uid://clafbhkmqedv4" path="res://assets/plot_developments/zibmakerpreview.png" id="6_fkgti"]
 
 [sub_resource type="TorusMesh" id="TorusMesh_72r1p"]
 inner_radius = 6.0
 outer_radius = 7.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_oekk1"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_72r1p"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_v0d6h"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_scge1"]
+viewport_path = NodePath("SubViewport")
 
 [node name="PurchasePicker" type="Node3D"]
 script = ExtResource("1_oekk1")
@@ -21,19 +36,38 @@ unique_name_in_owner = true
 
 [node name="Sprite3D" parent="DevelopmentOptions" instance=ExtResource("2_icfd5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.804829, -6.5)
+texture = SubResource("ViewportTexture_oekk1")
 developmentType = 2
+
+[node name="TextureRect" parent="DevelopmentOptions/Sprite3D/SubViewport/CenterContainer/PanelContainer" index="0"]
+texture = ExtResource("4_scge1")
 
 [node name="Sprite3D5" parent="DevelopmentOptions" instance=ExtResource("2_icfd5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.804829, 6.5)
-modulate = Color(0.833333, 0, 1, 1)
+texture = SubResource("ViewportTexture_72r1p")
 developmentType = 3
 
 [node name="Sprite3D6" parent="DevelopmentOptions" instance=ExtResource("2_icfd5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0.804829, 0)
-modulate = Color(0.296514, 0.627921, 0, 1)
+texture = SubResource("ViewportTexture_v0d6h")
 developmentType = 4
+
+[node name="TextureRect" parent="DevelopmentOptions/Sprite3D6/SubViewport/CenterContainer/PanelContainer" index="0"]
+texture = ExtResource("5_a33gn")
 
 [node name="Sprite3D7" parent="DevelopmentOptions" instance=ExtResource("2_icfd5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0.804829, 0)
-modulate = Color(0, 0.183333, 1, 1)
+texture = SubResource("ViewportTexture_scge1")
 developmentType = 5
+
+[node name="TextureRect" parent="DevelopmentOptions/Sprite3D7/SubViewport/CenterContainer/PanelContainer" index="0"]
+texture = ExtResource("6_fkgti")
+
+[editable path="DevelopmentOptions/Sprite3D"]
+[editable path="DevelopmentOptions/Sprite3D/SubViewport/CenterContainer"]
+[editable path="DevelopmentOptions/Sprite3D5"]
+[editable path="DevelopmentOptions/Sprite3D5/SubViewport/CenterContainer"]
+[editable path="DevelopmentOptions/Sprite3D6"]
+[editable path="DevelopmentOptions/Sprite3D6/SubViewport/CenterContainer"]
+[editable path="DevelopmentOptions/Sprite3D7"]
+[editable path="DevelopmentOptions/Sprite3D7/SubViewport/CenterContainer"]

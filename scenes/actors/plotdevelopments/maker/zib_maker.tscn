@@ -10,6 +10,8 @@ orbitCenter = NodePath("TowerCenter")
 orbitRadius = 4.0
 zibWorkingCapacity = 4
 workType = 1
+plotHUDTitle = "Zib Maker"
+plotHUDDescription = "Produces new Zibs from the work of other Zibs."
 
 [node name="Sphere" parent="." index="0"]
 surface_material_override/1 = ExtResource("3_5xysu")

@@ -9,3 +9,7 @@ func add_text_row_element(text: String) -> void:
 	var newRTL: PlotStatText = Instantiate.scene(PlotStatText)
 	newRTL.text = text
 	%VBox.add_child(newRTL)
+
+
+func _on_button_pressed() -> void:
+	print("Fucked.")
