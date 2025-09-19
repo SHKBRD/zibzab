@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmtm23jsihpw7"]
+
+[ext_resource type="Script" uid="uid://ch8xn27lqv7gl" path="res://scenes/ui/zib_stat_view.gd" id="1_yt7fv"]
+[ext_resource type="Theme" uid="uid://ybsb47jn85e1" path="res://scenes/ui/plot_stat_view_theme.tres" id="2_ir6sn"]
+[ext_resource type="PackedScene" uid="uid://dpqspu3yqfba2" path="res://scenes/ui/plot_stat_text.tscn" id="3_tsdf6"]
+
+[node name="Control" type="CenterContainer"]
+custom_minimum_size = Vector2(150, 512)
+offset_right = 300.0
+offset_bottom = 512.0
+script = ExtResource("1_yt7fv")
+
+[node name="ZibStatView" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme = ExtResource("2_ir6sn")
+
+[node name="VBox" type="VBoxContainer" parent="ZibStatView"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="ZibStatus" parent="ZibStatView/VBox" instance=ExtResource("3_tsdf6")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "CHARGED"
+
+[node name="ZibTiredness" parent="ZibStatView/VBox" instance=ExtResource("3_tsdf6")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "[b]100% Tired[/b]"
+
+[node name="ZibEnergyRate" parent="ZibStatView/VBox" instance=ExtResource("3_tsdf6")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+0.00[img width='20']res://assets/ui/energyIcon.png[/img]/s"
+
+[node name="ZibZabRate" parent="ZibStatView/VBox" instance=ExtResource("3_tsdf6")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+0.00 Z/s"
