@@ -13,3 +13,6 @@ func get_zib_amount_cost_mult() -> float:
 
 func get_zib_count() -> int:
 	return %Zibs.get_child_count()
+
+func add_zib(zib: Zib) -> void:
+	%Zibs.add_child(zib)

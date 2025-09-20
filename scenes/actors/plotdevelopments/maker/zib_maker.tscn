@@ -6,10 +6,17 @@
 
 [node name="ZibMaker" node_paths=PackedStringArray("orbitCenter") instance=ExtResource("1_ss00h")]
 script = ExtResource("2_76xuq")
+workRequired = null
+zibHolderBaseEnergyCost = null
+zibHolderBaseZabCost = null
 orbitCenter = NodePath("TowerCenter")
 orbitRadius = 4.0
+orbitRotateSpeed = null
 zibWorkingCapacity = 4
 workType = 1
+zibCountBaseMultiplier = null
+baseEnergyGen = null
+baseZabGen = null
 plotHUDTitle = "Zib Maker"
 plotHUDDescription = "Produces new Zibs from the work of other Zibs."
 

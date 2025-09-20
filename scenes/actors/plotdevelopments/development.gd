@@ -36,6 +36,8 @@ static var devTypeClassNames: Dictionary[DevelopmentType, GDScript] = {
 
 @export_category("Incremental Values")
 @export var zibCountBaseMultiplier: float = 1.25
+@export var baseEnergyGen: float = 10
+@export var baseZabGen: float = 2
 
 @export_category("PlotHUDTexts")
 @export var plotHUDTitle: String = "OVERRIDE ME"
@@ -51,7 +53,10 @@ func get_no_null_assigned_zib_list() -> Array[Zib]:
 	return assembleList
 
 func get_energy_bonus() -> float:
-	return get_per_zib_zib_count_multiplier()
+	return get_per_zib_zib_count_multiplier() * baseEnergyGen
+
+func get_zab_bonus() -> float:
+	return lerpf(1, get_per_zib_zib_count_multiplier(), 0.5) * baseZabGen
 
 func _ready() -> void:
 	zibPathsSetup(zibWorkingCapacity)
@@ -92,7 +97,7 @@ func assignZib(zib: Zib) -> void:
 		return
 	if workType == WorkType.ORBIT or workType == WorkType.UPGRADE:
 		var zibId: int = assignedZibs.find(zib)
-		print(zibId)
+		#print(zibId)
 		var foundFollowNode: Node3D = orbitCenter.get_child(zibId)
 		zib.workTarget = foundFollowNode
 		pass
@@ -116,11 +121,12 @@ func get_per_zib_zib_count_multiplier() -> float:
 	return pow(zibCountBaseMultiplier, zibCount-1)
 
 func produce_energy_from_work() -> void:
-	var initialEnergy = get_per_zib_zib_count_multiplier()
+	var initialEnergy = get_per_zib_zib_count_multiplier() * baseEnergyGen
 	Incrementals.add_energy(initialEnergy)
 
 func produce_zabs_from_work() -> void:
-	pass
+	var initialEnergy = get_per_zib_zib_count_multiplier() * baseZabGen
+	Incrementals.add_energy(initialEnergy)
 
 func apply_calculated_work_value() -> bool:
 	assert(false, "Override apply_calculated_work_value!")

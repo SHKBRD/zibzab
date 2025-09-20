@@ -9,6 +9,10 @@ enum GenerationType {
 
 var generationType: GenerationType = GenerationType.ENERGY
 
+func _ready() -> void:
+	super()
+	update_monitor_visual()
+
 func apply_calculated_work_value() -> bool:
 	if generationType == GenerationType.ENERGY:
 		produce_energy_from_work()
@@ -18,16 +22,28 @@ func apply_calculated_work_value() -> bool:
 		assert(false, "WORK ISN'T WORKING IN THIS ENERGY/ZAB THING")
 	return true
 
+func get_energy_bonus() -> float:
+	if generationType == GenerationType.ENERGY:
+		return get_per_zib_zib_count_multiplier() * baseEnergyGen
+	else:
+		return 0
+
+func get_zab_bonus() -> float:
+	if generationType == GenerationType.ZAB:
+		return get_per_zib_zib_count_multiplier() * baseZabGen
+	else:
+		return 0
+
 func update_plot_hud_development_specific() -> void:
 	pass
 
 func update_monitor_visual() -> void:
 	if generationType == GenerationType.ENERGY:
-		%Energy.hide()
-		%Zab.show()
-	else:
 		%Energy.show()
 		%Zab.hide()
+	else:
+		%Energy.hide()
+		%Zab.show()
 
 func update_switch_visual() -> void:
 	# 35 degree alt

@@ -26,7 +26,11 @@ func get_plot_hud() -> PlotStatView:
 
 func get_energy_per_second() -> float:
 	var developmentMultBonus: float = get_development().get_energy_bonus()
-	return Incrementals.get_applied_zib_energy_mult()
+	return Incrementals.get_applied_zib_energy_mult() * developmentMultBonus
+
+func get_zabs_per_second() -> float:
+	var developmentMultBonus: float = get_development().get_zab_bonus()
+	return Incrementals.get_applied_zib_zab_mult() * developmentMultBonus
 
 func _ready() -> void:
 	var smallScale: Vector3 = Vector3(0.001, 0.001, 0.001)
@@ -64,7 +68,10 @@ func develop(type: Development.DevelopmentType) -> void:
 #endregion
 
 func attempt_transfer_zib_to_this_plot(zib: Zib) -> bool:
-	if zib.assignedPlot == self: return false
+	if zib.assignedPlot == self: 
+		zib.on_deselected()
+		return false
+	
 	if zib.assignedPlot:
 		var plotZibList: Array = zib.assignedPlot.get_development().assignedZibs
 		plotZibList[plotZibList.find(zib)] = null
@@ -88,6 +95,7 @@ func focus() -> void:
 		focusTween.tween_property(%PurchasePicker, "scale", Vector3(1, 1, 1), 0.25).set_trans(Tween.TRANS_CUBIC)
 		%PurchasePicker.enable_options()
 	elif availabilityState == Availability.BOUGHT:
+		PlotSpace.focusPlot = self
 		show_plot_outline()
 		%PlotStatView.show()
 		plot_stat_view_update()
@@ -108,7 +116,7 @@ func focus() -> void:
 			defocus()
 			#get_tree().call_group("SelectedZibs", "move_to_plot", self)
 		pass
-	PlotSpace.focusPlot = self
+	
 
 func defocus() -> void:
 	hide_plot_outline()
@@ -136,6 +144,7 @@ func hide_plot_outline() -> void:
 	#defocusTween.tween_property(%PlotOutline, "scale", Vector3(0.935, 0.935, 0.935), 0.5).set_trans(Tween.TRANS_CUBIC)
 	##defocusTween.finished.connect(func(): if self != PlotSpace.focusPlot: %PlotOutline.hide())
 	%PlotOutline.hide()
+	#%PlotOutline.set_surface_override_material(0, plotHighlightOutline)
 	
 	
 	

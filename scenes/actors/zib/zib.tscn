@@ -148,7 +148,6 @@ surface_material_override/0 = ExtResource("2_myh30")
 [node name="ZibBodyOutline" type="MeshInstance3D" parent="ZibMeshes"]
 unique_name_in_owner = true
 transform = Transform3D(3.57628e-07, 0, 1, 0, 1, 0, -1, 0, 3.57628e-07, 0, 0, 0)
-visible = false
 mesh = SubResource("ArrayMesh_cksgm")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("3_anss5")
@@ -156,6 +155,7 @@ surface_material_override/0 = ExtResource("3_anss5")
 [node name="ZibBodyBlueOutline" type="MeshInstance3D" parent="ZibMeshes"]
 unique_name_in_owner = true
 transform = Transform3D(3.57628e-07, 0, 1, 0, 1, 0, -1, 0, 3.57628e-07, 0, 0, 0)
+visible = false
 mesh = SubResource("ArrayMesh_cksgm")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("5_hp1m1")

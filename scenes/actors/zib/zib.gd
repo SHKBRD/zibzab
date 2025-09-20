@@ -4,6 +4,7 @@ class_name Zib
 signal selected(zib: Zib)
 signal deselected(zib: Zib)
 signal work_completed(amount: int)
+signal moving_to_plot(plot: Plot, zib: Zib)
 
 @export var maxFlightSpeed: float = 9
 @export var maxWanderSpeed: float = 5
@@ -18,20 +19,28 @@ var assignedPlot: Plot = null
 # var targetHeadingPlot: Plot = null
 var workTarget: Node3D = null:
 	set(value):
-		print(value)
+		#print(value)
 		workTarget = value
 var workConnect: float = 0
 var workConnectDelay: float = 0.05
 
 # work per second
 var zibWorkEffective: float = 0.5
+var normalZibWork: float = 0.5
+var chargedZibWork: float = 5.0
+
 var zibWorkProgress: float = 0
 var workCompleted: int = 0
+
 var workLimit: int = 30
+var chargedWorkLimit: int = 400
+var normalworkLimit: int = 30
+
 var isZibTired: bool = false
 
 
 var isSelected: bool = false
+var supercharged: bool = false
 
 enum ZibState {
 	IDLE,
@@ -52,6 +61,10 @@ func get_energy_per_second() -> float:
 	if not assignedPlot or assignedPlot.get_development().workType != Development.WorkType.ORBIT: return 0
 	return assignedPlot.get_energy_per_second() * zibWorkEffective
 
+func get_zabs_per_second() -> float:
+	if not assignedPlot or assignedPlot.get_development().workType != Development.WorkType.ORBIT: return 0
+	return assignedPlot.get_zabs_per_second() * zibWorkEffective
+
 func _ready() -> void:
 	var smallScale: Vector3 = Vector3(0.001, 0.001, 0.001)
 	%SelectedSprite.scale = smallScale
@@ -61,6 +74,7 @@ func _ready() -> void:
 func move_to_plot(plot: Plot) -> void:
 	assignedPlot = plot
 	zibState = ZibState.PLOT_HEADING
+	moving_to_plot.emit(plot, self)
 
 
 #region Zib Work
@@ -98,20 +112,37 @@ func make_zib_untired() -> void:
 func make_zib_tired() -> void:
 	isZibTired = true
 	%ZibBody.set_surface_override_material(0, zibFaceTiredMat)
+	if supercharged:
+		unsupercharge()
 
 func make_work(delta: float) -> void:
 	zibWorkProgress += zibWorkEffective * delta
 	
 	var workAchieved: int = floor(zibWorkProgress)
 	var tireZib: bool = assignedPlot.get_development().on_zib_work_completed(workAchieved, self)
+	
 	for workTime: int in workAchieved:
-		zibWorkProgress -= 1
-		workCompleted += 1
-		if workCompleted == workLimit:
-			make_zib_tired()
-	zibWorkProgress -= workAchieved
-
+		if not isZibTired:
+			zibWorkProgress -= 1
+			if tireZib and assignedPlot.get_development().workType != Development.WorkType.WANDER:
+				workCompleted += 1
+			if workCompleted == workLimit:
+				make_zib_tired()
 #endregion
+
+func supercharge() -> void:
+	supercharged = true
+	%ZibBodyBlueOutline.show()
+	%ZibBodyOutline.hide()
+	zibWorkEffective = chargedZibWork
+	workLimit = chargedWorkLimit
+
+func unsupercharge() -> void:
+	supercharged = false
+	%ZibBodyBlueOutline.hide()
+	%ZibBodyOutline.show()
+	zibWorkEffective = normalZibWork
+	workLimit = chargedWorkLimit
 
 func process_zib_state(delta: float) -> void:
 	match zibState:
@@ -125,7 +156,7 @@ func process_zib_state(delta: float) -> void:
 				zibState = ZibState.WORKING
 		ZibState.WORKING:
 			plot_move(delta)
-			if not isZibTired:
+			if not isZibTired or (isZibTired and assignedPlot.get_development() is CorralDevelopment):
 				make_work(delta)
 		_:
 			pass
@@ -141,8 +172,8 @@ func _process(delta: float) -> void:
 	var old_position: Vector3 = position
 	process_zib_state(delta)
 	turn_towards_position(position-old_position, 0.2)
-	if name == "Zib":
-		print(workTarget)
+	
+	update_info_sprite()
 
 
 func on_deselected() -> void:
@@ -172,11 +203,19 @@ func _on_zib_hitbox_input_event(camera: Node, event: InputEvent, event_position:
 		print(get_tree().get_nodes_in_group("SelectedZibs"))
 
 func update_info_sprite() -> void:
-	%ZibStatView.update_status(stateToString[zibState])
+	var statusString: String
+	if isZibTired:
+		statusString = "Tired"
+	else:
+		statusString = stateToString[zibState]
+	%ZibStatView.update_status(statusString)
+	
+	%ZibStatView.update_energy_rate(get_energy_per_second())
+	%ZibStatView.update_zab_rate(get_zabs_per_second())
+	%ZibStatView.update_tiredness(workCompleted/float(workLimit))
 	pass
 
 func _on_zib_hitbox_mouse_entered() -> void:
-	update_info_sprite()
 	%InfoSprite.show()
 
 

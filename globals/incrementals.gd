@@ -11,11 +11,22 @@ var energyMults: Dictionary[String, float] = {
 	"baseMult": 1.0
 }
 
+var zabMults: Dictionary[String, float] = {
+	"baseMult": 1.0
+}
+
 func get_applied_zib_energy_mult() -> float:
 	var baseMult: float = 1.0
 	for key: String in energyMults:
 		baseMult *= energyMults[key]
 	return baseMult
+
+func get_applied_zib_zab_mult() -> float:
+	var baseMult: float = 1.0
+	for key: String in zabMults:
+		baseMult *= zabMults[key]
+	return baseMult
+
 
 func add_energy(amount: float) -> void:
 	energy += amount * get_applied_zib_energy_mult()

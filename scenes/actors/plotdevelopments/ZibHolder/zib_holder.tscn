@@ -1,16 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://7b3rw4y47ax5"]
+[gd_scene load_steps=10 format=3 uid="uid://7b3rw4y47ax5"]
 
 [ext_resource type="PackedScene" uid="uid://5akn2ygyiq7y" path="res://assets/plot_developments/ZibHolder.blend" id="1_2g8on"]
 [ext_resource type="Script" uid="uid://bbifdhke6jvr7" path="res://scenes/actors/plotdevelopments/ZibHolder/zib_holder.gd" id="2_g4wmm"]
 [ext_resource type="Material" uid="uid://cocc5ouw71hc5" path="res://shaders/outlineshader.tres" id="2_gicxw"]
 [ext_resource type="Material" uid="uid://7wbqquq8c83u" path="res://shaders/Highlight.tres" id="4_s71fp"]
 [ext_resource type="PackedScene" uid="uid://b7ursfch41qa0" path="res://scenes/ui/cost_sprite.tscn" id="5_ciskv"]
+[ext_resource type="PackedScene" uid="uid://bmncr5k6mgs3s" path="res://scenes/ui/progress_sprite.tscn" id="6_eyhq3"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ciskv"]
 height = 1.0
 radius = 1.5
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_eyhq3"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7vn8h"]
 viewport_path = NodePath("SubViewport")
 
 [node name="ZibHolder" node_paths=PackedStringArray("holderSpot") instance=ExtResource("1_2g8on")]
@@ -41,6 +45,13 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.3635464, 0)
 visible = false
 texture = SubResource("ViewportTexture_eyhq3")
+
+[node name="ProgressSprite" parent="." index="5" instance=ExtResource("6_eyhq3")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3449452, 0)
+pixel_size = 0.002
+render_priority = 1
+texture = SubResource("ViewportTexture_7vn8h")
 
 [connection signal="input_event" from="ZibHolderAdderArea" to="." method="_on_zib_holder_adder_area_input_event"]
 [connection signal="mouse_entered" from="ZibHolderAdderArea" to="." method="_on_zib_holder_adder_area_mouse_entered"]

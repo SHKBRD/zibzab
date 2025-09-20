@@ -20,6 +20,9 @@ func populate_plots():
 			add_child(newPlot)
 	var centerPlot: Plot = get_node("%d,%d" % [ceil(cols/2), ceil(rows/2)]) as Plot
 	centerPlot.develop(Development.DevelopmentType.MAIN)
+	
+	for zib: Zib in %Zibs.get_children():
+		centerPlot.attempt_transfer_zib_to_this_plot(zib)
 
 
 func _ready() -> void:

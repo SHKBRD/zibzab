@@ -6,7 +6,7 @@ func update_status(zibStatus: String) -> void:
 
 func update_tiredness(tiredPercentage: float) -> void:
 	var tiredText: String = str(floor(tiredPercentage * 100)) + "% Tired"
-	%ZibStatus.text = "[b]" + tiredText + "[/b]"
+	%ZibTiredness.text = "[b]" + tiredText + "[/b]"
 
 func update_energy_rate(energyRate: float) -> void:
 	if energyRate == -1:
