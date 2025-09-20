@@ -2,7 +2,7 @@ extends Control
 class_name MainGameUI
 
 func _ready() -> void:
-	pass
+	Incrementals.goal_reached.connect(goal_reached)
 
 func update_energy() -> void:
 	var energyText: RichTextLabel = $VBoxContainer/EnergyControl/Container/Panel
@@ -15,3 +15,11 @@ func update_zabs() -> void:
 func _process(delta: float) -> void:
 	update_energy()
 	update_zabs()
+
+
+func goal_reached() -> void:
+	pass
+
+
+func _on_how_to_play_button_pressed() -> void:
+	%DisplayTablet.show()

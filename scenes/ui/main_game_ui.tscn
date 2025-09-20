@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0pwcd5lwmaml"]
+[gd_scene load_steps=6 format=3 uid="uid://b0pwcd5lwmaml"]
 
 [ext_resource type="Script" uid="uid://nhcv76f3tst0" path="res://scenes/ui/main_game_ui.gd" id="1_2lr7m"]
-[ext_resource type="PackedScene" uid="uid://ct6qhwbd1void" path="res://scenes/ui/ui elements/panel.tscn" id="1_i8egv"]
+[ext_resource type="PackedScene" uid="uid://bk2ypih11ec7u" path="res://scenes/ui/IncrementalScores.tscn" id="2_2lr7m"]
+[ext_resource type="Texture2D" uid="uid://djppdry148n3i" path="res://assets/ui/HowToPlaySelect.png" id="3_bb4rc"]
+[ext_resource type="Texture2D" uid="uid://d24wawhaq4xf6" path="res://assets/ui/HowToPlayUnselect.png" id="4_48pfk"]
+[ext_resource type="PackedScene" uid="uid://bsmbk2lut2m18" path="res://scenes/ui/display_tablet.tscn" id="5_48pfk"]
 
 [node name="MainGameUI" type="Control"]
 layout_mode = 3
@@ -13,25 +16,24 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_2lr7m")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" parent="." instance=ExtResource("2_2lr7m")]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
-[node name="EnergyControl" parent="VBoxContainer" instance=ExtResource("1_i8egv")]
+[node name="HowToPlayButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -224.0
+offset_right = 313.0
+grow_vertical = 0
+texture_normal = ExtResource("3_bb4rc")
+texture_hover = ExtResource("4_48pfk")
+
+[node name="DisplayTablet" parent="." instance=ExtResource("5_48pfk")]
 unique_name_in_owner = true
-layout_mode = 2
+visible = false
+z_index = 1
+layout_mode = 1
 
-[node name="Panel" parent="VBoxContainer/EnergyControl/Container" index="0"]
-text = "1,000,000,000/1,000,000,000[img width='40']res://assets/ui/energyIcon.png[/img]"
-
-[node name="ZabControl" parent="VBoxContainer" instance=ExtResource("1_i8egv")]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="Panel" parent="VBoxContainer/ZabControl/Container" index="0"]
-text = "100[img width='40']res://assets/ui/zabIcon.png[/img]"
-
-[editable path="VBoxContainer/EnergyControl"]
-[editable path="VBoxContainer/ZabControl"]
+[connection signal="pressed" from="HowToPlayButton" to="." method="_on_how_to_play_button_pressed"]

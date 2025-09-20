@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://bk2ypih11ec7u"]
+
+[ext_resource type="PackedScene" uid="uid://ct6qhwbd1void" path="res://scenes/ui/ui elements/panel.tscn" id="1_xw4q2"]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="EnergyControl" parent="." instance=ExtResource("1_xw4q2")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Panel" parent="EnergyControl/Container" index="0"]
+text = "1,000,000,000/1,000,000,000[img width='40']res://assets/ui/energyIcon.png[/img]"
+
+[node name="ZabControl" parent="." instance=ExtResource("1_xw4q2")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Panel" parent="ZabControl/Container" index="0"]
+text = "100[img width='40']res://assets/ui/zabIcon.png[/img]"
+
+[editable path="EnergyControl"]
+[editable path="ZabControl"]

@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=3 uid="uid://b5pnq30j3a6ff"]
+
+[ext_resource type="Script" uid="uid://dulbkalupbm4a" path="res://scenes/ui/tablet_content_page.gd" id="1_kmtjg"]
+[ext_resource type="FontFile" uid="uid://bxhyekorg2ymj" path="res://assets/fonts/Montserrat/static/Montserrat-Bold.ttf" id="2_b5nlg"]
+[ext_resource type="FontFile" uid="uid://cyyb1dgb0w6bx" path="res://assets/fonts/Montserrat/static/Montserrat-ExtraBoldItalic.ttf" id="3_5uviy"]
+[ext_resource type="FontFile" uid="uid://dmbiafhtwnt75" path="res://assets/fonts/Montserrat/static/Montserrat-Italic.ttf" id="4_ut5uu"]
+[ext_resource type="FontFile" uid="uid://c5trwck28e37r" path="res://assets/fonts/Montserrat/static/Montserrat-Regular.ttf" id="5_npey4"]
+[ext_resource type="FontFile" uid="uid://dhxwnsbbk3v3f" path="res://assets/fonts/Comfortaa/Comfortaa-VariableFont_wght.ttf" id="6_77w1g"]
+[ext_resource type="Texture2D" uid="uid://dl2bq8a23n5ne" path="res://assets/ui/MoonTutorial.png" id="7_rall4"]
+
+[sub_resource type="FontVariation" id="FontVariation_aqo8w"]
+base_font = ExtResource("6_77w1g")
+
+[sub_resource type="Theme" id="Theme_pcwth"]
+default_font = SubResource("FontVariation_aqo8w")
+RichTextLabel/fonts/bold_font = ExtResource("2_b5nlg")
+RichTextLabel/fonts/bold_italics_font = ExtResource("3_5uviy")
+RichTextLabel/fonts/italics_font = ExtResource("4_ut5uu")
+RichTextLabel/fonts/normal_font = ExtResource("5_npey4")
+
+[node name="TabletContentPage" type="Control"]
+custom_minimum_size = Vector2(680, 290)
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_kmtjg")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_pcwth")
+bbcode_enabled = true
+text = "[b][i]Page 1 - Introduction[/i][/b]
+
+Welcome to ZibZab! You goal is to obtain 1,000,000,000 energy so the Zibs can have enough energy for their trip to the moon. Try to reach this goal as fast as possible! 
+
+You will achieve this by managing your Zibs across the plots that you build.
+
+[b]DISCLAIMER: Your progress will not be saved when you close/quit the game.[/b]"
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_rall4")
+expand_mode = 3

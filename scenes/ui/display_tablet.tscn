@@ -1,0 +1,225 @@
+[gd_scene load_steps=13 format=3 uid="uid://bsmbk2lut2m18"]
+
+[ext_resource type="Script" uid="uid://cdhm4gbhddryk" path="res://scenes/ui/display_tablet.gd" id="1_e6v0w"]
+[ext_resource type="Theme" uid="uid://c8n3bbe4vxx0c" path="res://scenes/ui/display_tablet_nav_button.tres" id="2_055ca"]
+[ext_resource type="PackedScene" uid="uid://b5pnq30j3a6ff" path="res://scenes/ui/tablet_content_page.tscn" id="2_uiaon"]
+[ext_resource type="Texture2D" uid="uid://c74ao6skhwfhs" path="res://assets/ui/ZibPreview.png" id="3_7dg3m"]
+[ext_resource type="Texture2D" uid="uid://cjq3hhmnamngc" path="res://assets/plot_developments/allPlotsPreview.png" id="4_vsaga"]
+[ext_resource type="Texture2D" uid="uid://dd2cmucfae0i3" path="res://assets/plot_developments/mainpreview.png" id="5_00pcm"]
+[ext_resource type="Texture2D" uid="uid://0w1njhhcnv3a" path="res://assets/plot_developments/resourcemakerpreview256.png" id="6_6g61s"]
+[ext_resource type="Texture2D" uid="uid://vjyghfdjefqf" path="res://assets/plot_developments/corralpreview256.png" id="7_xji32"]
+[ext_resource type="Texture2D" uid="uid://dgynfaek1mkmj" path="res://assets/plot_developments/zibmakerpreview256.png" id="8_d13tq"]
+[ext_resource type="Texture2D" uid="uid://dd02wto8h4nte" path="res://assets/plot_developments/chargerpreview256.png" id="9_pj6vw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5ylr"]
+content_margin_left = 60.0
+content_margin_top = 60.0
+content_margin_right = 60.0
+content_margin_bottom = 60.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="Theme" id="Theme_e6v0w"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_p5ylr")
+
+[node name="DisplayTablet" type="VBoxContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -302.0
+offset_right = 400.0
+offset_bottom = 302.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e6v0w")
+
+[node name="TabletDisplay" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(800, 500)
+layout_mode = 2
+theme = SubResource("Theme_e6v0w")
+
+[node name="ScreenContainer" type="VBoxContainer" parent="TabletDisplay"]
+layout_mode = 2
+
+[node name="TabletContents" type="HBoxContainer" parent="TabletDisplay/ScreenContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Page0" parent="TabletDisplay/ScreenContainer/TabletContents" instance=ExtResource("2_uiaon")]
+visible = false
+layout_mode = 2
+
+[node name="RichTextLabel" parent="TabletDisplay/ScreenContainer/TabletContents/Page0/HBoxContainer" index="0"]
+text = "[b][i]Page 0 - Controls[/i][/b]
+
+[b]WASD/Arrow Keys:[/b] Move Camera
+[b]Mouse+Mouse Left Click:[/b] Everything else lol
+
+[color=#00FFFF][b]DISCLAIMER: Your progress will not be saved when you close/quit the game.[/b][/color]"
+
+[node name="TextureRect" parent="TabletDisplay/ScreenContainer/TabletContents/Page0/HBoxContainer" index="1"]
+visible = false
+
+[node name="Page1" parent="TabletDisplay/ScreenContainer/TabletContents" instance=ExtResource("2_uiaon")]
+visible = false
+layout_mode = 2
+
+[node name="RichTextLabel" parent="TabletDisplay/ScreenContainer/TabletContents/Page1/HBoxContainer" index="0"]
+text = "[b][i]Page 1 - Introduction[/i][/b]
+
+Welcome to ZibZab! You goal is to obtain 1,000,000,000 energy so the Zibs can have enough energy for their trip to the moon. Try to reach this goal as fast as possible! 
+
+You will achieve this by managing your Zibs across the plots that you build."
+
+[node name="Page2" parent="TabletDisplay/ScreenContainer/TabletContents" instance=ExtResource("2_uiaon")]
+visible = false
+layout_mode = 2
+
+[node name="RichTextLabel" parent="TabletDisplay/ScreenContainer/TabletContents/Page2/HBoxContainer" index="0"]
+text = "[b][i]Page 2 - Zibs[/i][/b]
+
+	These creatures are called Zibs. You can assign them them to work in the various plots that you buy. Click on the Zibs that you want to assign, then click on your desired plot. This allows you to generate the resources needed to buy more plots, and eventually reach your goal.
+
+	Over time, Zibs can become tired after working for too long, You can give them some rest by assigning them to a Corral (more on those later)"
+fit_content = true
+
+[node name="TextureRect" parent="TabletDisplay/ScreenContainer/TabletContents/Page2/HBoxContainer" index="1"]
+texture = ExtResource("3_7dg3m")
+
+[node name="Page3" parent="TabletDisplay/ScreenContainer/TabletContents" instance=ExtResource("2_uiaon")]
+visible = false
+layout_mode = 2
+
+[node name="RichTextLabel" parent="TabletDisplay/ScreenContainer/TabletContents/Page3/HBoxContainer" index="0"]
+text = "[b][i]Page 3 - Plots[/i][/b]
+
+You can purchase various kinds of plots to progress through the game. These vary from alternative sources of energy/Zabs, resting spots for your Zibs, Zib Makers, or Zib Superchargers.  Buying plots will cost both Energy and Zabs.
+
+You will start out with 2 Corrals, along with a special Energy+Zab producing plot."
+
+[node name="TextureRect" parent="TabletDisplay/ScreenContainer/TabletContents/Page3/HBoxContainer" index="1"]
+texture = ExtResource("4_vsaga")
+
+[node name="Page4" parent="TabletDisplay/ScreenContainer/TabletContents" instance=ExtResource("2_uiaon")]
+visible = false
+layout_mode = 2
+
+[node name="RichTextLabel" parent="TabletDisplay/ScreenContainer/TabletContents/Page4/HBoxContainer" index="0"]
+text = "[b][i]Page 4 - Main Plot[/i][/b]
+
+This plot allows Zibs to produce Energy and Zabs. 
+
+Up to 8 Zibs can be assigned to this Plot."
+
+[node name="TextureRect" parent="TabletDisplay/ScreenContainer/TabletContents/Page4/HBoxContainer" index="1"]
+texture = ExtResource("5_00pcm")
+
+[node name="Page5" parent="TabletDisplay/ScreenContainer/TabletContents" instance=ExtResource("2_uiaon")]
+visible = false
+layout_mode = 2
+
+[node name="RichTextLabel" parent="TabletDisplay/ScreenContainer/TabletContents/Page5/HBoxContainer" index="0"]
+text = "[b][i]Page 5 - Resource Generator[/i][/b]
+
+This plot allows Zibs to produce Energy or Zabs. Click the switch on the machine to switch between Energy or Zab production.
+
+Up to 4 Zibs can be assigned to this Plot."
+
+[node name="TextureRect" parent="TabletDisplay/ScreenContainer/TabletContents/Page5/HBoxContainer" index="1"]
+texture = ExtResource("6_6g61s")
+
+[node name="Page6" parent="TabletDisplay/ScreenContainer/TabletContents" instance=ExtResource("2_uiaon")]
+visible = false
+layout_mode = 2
+
+[node name="RichTextLabel" parent="TabletDisplay/ScreenContainer/TabletContents/Page6/HBoxContainer" index="0"]
+text = "[b][i]Page 6 - Zib Corall[/i][/b]
+
+This plot allows Zibs to rest and become active again.
+
+Up to 6 Zibs can be assigned to this Plot."
+
+[node name="TextureRect" parent="TabletDisplay/ScreenContainer/TabletContents/Page6/HBoxContainer" index="1"]
+texture = ExtResource("7_xji32")
+
+[node name="Page7" parent="TabletDisplay/ScreenContainer/TabletContents" instance=ExtResource("2_uiaon")]
+visible = false
+layout_mode = 2
+
+[node name="RichTextLabel" parent="TabletDisplay/ScreenContainer/TabletContents/Page7/HBoxContainer" index="0"]
+text = "[b][i]Page 7 - Zib Maker[/i][/b]
+
+This plot allows Zibs to create more Zibs. Purchase up to 3 Zib holders, which fill up with 1 Zib once enough work from assigned Zibs is made.
+
+Up to 4 Zibs can be assigned to this Plot."
+
+[node name="TextureRect" parent="TabletDisplay/ScreenContainer/TabletContents/Page7/HBoxContainer" index="1"]
+texture = ExtResource("8_d13tq")
+
+[node name="Page8" parent="TabletDisplay/ScreenContainer/TabletContents" instance=ExtResource("2_uiaon")]
+visible = false
+layout_mode = 2
+
+[node name="RichTextLabel" parent="TabletDisplay/ScreenContainer/TabletContents/Page8/HBoxContainer" index="0"]
+text = "[b][i]Page 8 - Zib Supercharger[/i][/b]
+
+Supercharges Zibs. Supercharged Zibs work MUCH faster, and can produce a LOT more work before getting tired.
+
+1 Zib can be assigned to this Plot."
+
+[node name="TextureRect" parent="TabletDisplay/ScreenContainer/TabletContents/Page8/HBoxContainer" index="1"]
+texture = ExtResource("9_pj6vw")
+
+[node name="NavButtonsContainer" type="HBoxContainer" parent="TabletDisplay/ScreenContainer"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="BackButton" type="Button" parent="TabletDisplay/ScreenContainer/NavButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_055ca")
+text = "Back"
+
+[node name="NextButton" type="Button" parent="TabletDisplay/ScreenContainer/NavButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_055ca")
+text = "Next
+"
+
+[node name="CloseButton" type="Button" parent="."]
+z_index = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_055ca")
+text = "Close"
+
+[connection signal="pressed" from="TabletDisplay/ScreenContainer/NavButtonsContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="TabletDisplay/ScreenContainer/NavButtonsContainer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
+
+[editable path="TabletDisplay/ScreenContainer/TabletContents/Page0"]
+[editable path="TabletDisplay/ScreenContainer/TabletContents/Page1"]
+[editable path="TabletDisplay/ScreenContainer/TabletContents/Page2"]
+[editable path="TabletDisplay/ScreenContainer/TabletContents/Page3"]
+[editable path="TabletDisplay/ScreenContainer/TabletContents/Page4"]
+[editable path="TabletDisplay/ScreenContainer/TabletContents/Page5"]
+[editable path="TabletDisplay/ScreenContainer/TabletContents/Page6"]
+[editable path="TabletDisplay/ScreenContainer/TabletContents/Page7"]
+[editable path="TabletDisplay/ScreenContainer/TabletContents/Page8"]

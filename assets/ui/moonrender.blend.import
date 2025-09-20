@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cr0kykin3bip2"
-path="res://.godot/imported/MainEnergyIsland.blend-290cec9e92921d12f6a6eddbebee354f.scn"
+uid="uid://crto16k7xhivn"
+path="res://.godot/imported/moonrender.blend-7c37321b1712dccd2b3bcd3389666f3a.scn"
 
 [deps]
 
-source_file="res://assets/plot_developments/MainEnergyIsland.blend"
-dest_files=["res://.godot/imported/MainEnergyIsland.blend-290cec9e92921d12f6a6eddbebee354f.scn"]
+source_file="res://assets/ui/moonrender.blend"
+dest_files=["res://.godot/imported/moonrender.blend-7c37321b1712dccd2b3bcd3389666f3a.scn"]
 
 [params]
 
@@ -56,4 +56,4 @@ blender/materials/export_materials=1
 blender/animation/limit_playback=true
 blender/animation/always_sample=true
 blender/animation/group_tracks=true
-gltf/naming_version=0
+gltf/naming_version=2

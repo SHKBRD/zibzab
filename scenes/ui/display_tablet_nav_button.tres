@@ -1,0 +1,25 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://c8n3bbe4vxx0c"]
+
+[ext_resource type="FontFile" uid="uid://b1dlx7ssmg0rn" path="res://assets/fonts/Monomaniac_One/MonomaniacOne-Regular.ttf" id="1_h1sm2"]
+[ext_resource type="StyleBox" uid="uid://dvo0v45rp6jl1" path="res://scenes/ui/tablet_nav_button_style_box.tres" id="2_u5h1p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5dno"]
+content_margin_left = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[resource]
+Button/font_sizes/font_size = 45
+Button/fonts/font = ExtResource("1_h1sm2")
+Button/styles/hover = SubResource("StyleBoxFlat_o5dno")
+Button/styles/normal = ExtResource("2_u5h1p")
