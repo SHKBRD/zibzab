@@ -30,3 +30,6 @@ func get_applied_zib_zab_mult() -> float:
 
 func add_energy(amount: float) -> void:
 	energy += amount * get_applied_zib_energy_mult()
+
+func add_zabs(amount: float) -> void:
+	zabs += amount * get_applied_zib_zab_mult()

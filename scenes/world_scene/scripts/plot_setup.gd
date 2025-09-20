@@ -19,7 +19,11 @@ func populate_plots():
 			newPlot.gotFocused.connect(on_plot_focused)
 			add_child(newPlot)
 	var centerPlot: Plot = get_node("%d,%d" % [ceil(cols/2), ceil(rows/2)]) as Plot
+	var leftPlot: Plot = get_node("%d,%d" % [ceil(cols/2), ceil(rows/2)-1]) as Plot
+	var rightPlot: Plot = get_node("%d,%d" % [ceil(cols/2), ceil(rows/2)+1]) as Plot
 	centerPlot.develop(Development.DevelopmentType.MAIN)
+	leftPlot.develop(Development.DevelopmentType.CORRAL)
+	rightPlot.develop(Development.DevelopmentType.CORRAL)
 	
 	for zib: Zib in %Zibs.get_children():
 		centerPlot.attempt_transfer_zib_to_this_plot(zib)
@@ -42,4 +46,4 @@ func on_plot_focused(plot: Plot) -> void:
 		focusPlot.focus()
 	else:
 		focusPlot = null
-	print("Plot: " + str(focusPlot))
+	#print("Plot: " + str(focusPlot))

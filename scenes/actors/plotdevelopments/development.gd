@@ -37,7 +37,7 @@ static var devTypeClassNames: Dictionary[DevelopmentType, GDScript] = {
 @export_category("Incremental Values")
 @export var zibCountBaseMultiplier: float = 1.25
 @export var baseEnergyGen: float = 10
-@export var baseZabGen: float = 2
+@export var baseZabGen: float = 0.5
 
 @export_category("PlotHUDTexts")
 @export var plotHUDTitle: String = "OVERRIDE ME"
@@ -126,7 +126,7 @@ func produce_energy_from_work() -> void:
 
 func produce_zabs_from_work() -> void:
 	var initialEnergy = get_per_zib_zib_count_multiplier() * baseZabGen
-	Incrementals.add_energy(initialEnergy)
+	Incrementals.add_zabs(initialEnergy)
 
 func apply_calculated_work_value() -> bool:
 	assert(false, "Override apply_calculated_work_value!")

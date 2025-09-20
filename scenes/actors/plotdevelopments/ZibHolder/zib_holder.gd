@@ -60,7 +60,7 @@ func _process(delta: float) -> void:
 		%ProgressSprite.update_progress(progressMade/progressRequired)
 	else:
 		%ProgressSprite.hide()
-	print("Charge progress: " + str(progressMade))
+	#print("Charge progress: " + str(progressMade))
 
 func reset_progress() -> void:
 	fulfilled = false

@@ -4,7 +4,7 @@ class_name CorralDevelopment
 var workDecrease: int = 1
 
 func on_zib_work_completed(amount: int, zib: Zib) -> bool:
-	print("Amount: " + str(amount) + "zibWorkProg: " + str(zib.zibWorkProgress))
+	#print("Amount: " + str(amount) + "zibWorkProg: " + str(zib.zibWorkProgress))
 	for applyAmount: int in amount:
 		zib.workCompleted -= (workDecrease)
 		zib.zibWorkProgress -= 1

@@ -8,6 +8,8 @@
 script = ExtResource("2_ejp6b")
 zibWorkingCapacity = 6
 workType = 3
+plotHUDTitle = "Zib Corral"
+plotHUDDescription = "A place for your Zibs to regain their energy."
 
 [node name="BézierCurve" parent="." index="0"]
 surface_material_override/2 = ExtResource("3_n42nx")

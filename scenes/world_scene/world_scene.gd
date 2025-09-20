@@ -16,3 +16,6 @@ func get_zib_count() -> int:
 
 func add_zib(zib: Zib) -> void:
 	%Zibs.add_child(zib)
+
+func _process(delta: float) -> void:
+	print(Incrementals.zabs)
