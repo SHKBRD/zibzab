@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://c6b2yfgwdfgvv"]
+[gd_scene load_steps=11 format=3 uid="uid://c6b2yfgwdfgvv"]
 
 [ext_resource type="Script" uid="uid://ci235s1ttho21" path="res://scenes/world_scene/world_scene.gd" id="1_cih2l"]
 [ext_resource type="Material" uid="uid://xnpqndxhsn5" path="res://scenes/world_scene/shaders/water.tres" id="1_wdn8f"]
-[ext_resource type="PackedScene" uid="uid://dogm3jw7h567q" path="res://scenes/actors/base_plot/base_plot.tscn" id="2_bn180"]
 [ext_resource type="Script" uid="uid://dtq3gs0bkn117" path="res://scenes/world_scene/scripts/world_camera.gd" id="2_l4v6i"]
 [ext_resource type="Script" uid="uid://rwqr8dol12av" path="res://scenes/world_scene/scripts/plot_setup.gd" id="2_mh22i"]
 [ext_resource type="PackedScene" uid="uid://b0pwcd5lwmaml" path="res://scenes/ui/main_game_ui.tscn" id="2_sgpo1"]
@@ -45,10 +44,8 @@ transform = Transform3D(-1, 6.18172e-08, -6.18172e-08, 0, 0.707107, 0.707107, 8.
 script = ExtResource("2_l4v6i")
 
 [node name="Plots" type="Node3D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("2_mh22i")
-
-[node name="BasePlot" parent="Plots" instance=ExtResource("2_bn180")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.141158, 0.876557, 0.0159931)
 
 [node name="Zibs" type="Node3D" parent="."]
 unique_name_in_owner = true

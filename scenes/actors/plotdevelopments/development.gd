@@ -25,6 +25,14 @@ static var devTypeClassNames: Dictionary[DevelopmentType, GDScript] = {
 	DevelopmentType.ZIB_MAKER: ZibMakerDevelopment
 }
 
+static var devTypeNames: Dictionary[DevelopmentType, String] = {
+	DevelopmentType.MAIN: "Main Generator",
+	DevelopmentType.TOWER: "Resource Generator",
+	DevelopmentType.CORRAL: "Zib Corral",
+	DevelopmentType.CHARGER: "Zib Supercharger",
+	DevelopmentType.ZIB_MAKER: "Zib Maker"
+}
+
 @export_category("Orbit Values")
 @export var orbitCenter: Node3D
 @export var orbitRadius: float

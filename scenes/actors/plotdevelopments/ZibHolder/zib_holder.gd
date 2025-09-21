@@ -2,7 +2,6 @@ extends Node3D
 class_name ZibHolder
 
 signal attempt_purchase(holder: ZibHolder)
-signal query_build_price(holder: ZibHolder)
 signal completed(holder: ZibHolder)
 
 
@@ -78,7 +77,9 @@ func on_zib_leaving_holder(plot: Plot, zib: Zib) -> void:
 
 
 func attempt_to_display_price() -> void:
-	query_build_price.emit(self)
+	var energyPrice: float = Incrementals.get_zib_holder_energy_build_price()
+	var zabPrice: float = Incrementals.get_zib_holder_zab_build_price()
+	display_price(int(ceil(energyPrice)), int(ceil(zabPrice)))
 
 func display_price(energyPrice: int, zabPrice: int) -> void:
 	%CostSprite.show()
@@ -103,7 +104,10 @@ func hide_price() -> void:
 func _on_zib_holder_adder_area_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
-			attempt_purchase.emit(self)
+			if Incrementals.can_buy(Incrementals.get_zib_holder_energy_build_price(), Incrementals.get_zib_holder_zab_build_price()):			
+				attempt_purchase.emit(self)
+			else:
+				WorldSpace.reject_payment()
 
 func _on_zib_holder_adder_area_mouse_entered() -> void:
 	%ZibHolderAdder.set_surface_override_material(2, blueOutline)

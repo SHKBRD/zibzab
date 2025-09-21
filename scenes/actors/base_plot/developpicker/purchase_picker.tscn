@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b434msy1r6nt3"]
+[gd_scene load_steps=14 format=3 uid="uid://b434msy1r6nt3"]
 
 [ext_resource type="Material" uid="uid://bhc7ccj2cmnml" path="res://shaders/gray.tres" id="1_icfd5"]
 [ext_resource type="Script" uid="uid://bqkftd8ig00e8" path="res://scenes/actors/base_plot/developpicker/purchase_picker.gd" id="1_oekk1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bpx3q2budl6jy" path="res://assets/plot_developments/resourcemakerpreview.png" id="4_scge1"]
 [ext_resource type="Texture2D" uid="uid://b4ga82tgfp5xf" path="res://assets/plot_developments/chargerpreview.png" id="5_a33gn"]
 [ext_resource type="Texture2D" uid="uid://clafbhkmqedv4" path="res://assets/plot_developments/zibmakerpreview.png" id="6_fkgti"]
+[ext_resource type="PackedScene" uid="uid://b7ursfch41qa0" path="res://scenes/ui/cost_sprite.tscn" id="7_a33gn"]
 
 [sub_resource type="TorusMesh" id="TorusMesh_72r1p"]
 inner_radius = 6.0
@@ -21,6 +22,9 @@ viewport_path = NodePath("SubViewport")
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_scge1"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_fkgti"]
 viewport_path = NodePath("SubViewport")
 
 [node name="PurchasePicker" type="Node3D"]
@@ -62,6 +66,11 @@ developmentType = 5
 
 [node name="TextureRect" parent="DevelopmentOptions/Sprite3D7/SubViewport/CenterContainer/PanelContainer" index="0"]
 texture = ExtResource("6_fkgti")
+
+[node name="CostSprite" parent="." instance=ExtResource("7_a33gn")]
+unique_name_in_owner = true
+visible = false
+texture = SubResource("ViewportTexture_fkgti")
 
 [editable path="DevelopmentOptions/Sprite3D"]
 [editable path="DevelopmentOptions/Sprite3D/SubViewport/CenterContainer"]

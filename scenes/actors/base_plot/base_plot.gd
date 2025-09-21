@@ -62,6 +62,7 @@ func raise(type: Availability) -> void:
 
 func develop(type: Development.DevelopmentType) -> void:
 	raise(Plot.Availability.BOUGHT)
+	WorldSpace.buildingAmount += 1
 	var developmentNode: Development = Instantiate.scene(Development.devTypeClassNames[type])
 	spaceType = type
 	%BuildingDevelopment.add_child(developmentNode)
@@ -162,6 +163,7 @@ func _on_plot_collision_input_event(camera: Node, event: InputEvent, event_posit
 
 
 func _on_purchase_picker_option_chosen(type: Development.DevelopmentType) -> void:
+	Incrementals.spend(Incrementals.get_new_building_energy_cost(), Incrementals.get_new_building_zab_cost())
 	develop(type)
 	PlotSpace.focusPlot.defocus()
 

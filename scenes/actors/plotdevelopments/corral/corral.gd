@@ -1,7 +1,7 @@
 extends Development
 class_name CorralDevelopment
 
-var workDecrease: int = 1
+var workDecrease: int = 3
 
 func on_zib_work_completed(amount: int, zib: Zib) -> bool:
 	#print("Amount: " + str(amount) + "zibWorkProg: " + str(zib.zibWorkProgress))
