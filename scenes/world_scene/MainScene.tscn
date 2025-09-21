@@ -27,7 +27,7 @@ stream = ExtResource("4_ej820")
 unique_name_in_owner = true
 process_mode = 3
 stream = ExtResource("5_davt3")
-volume_db = -3.445
+volume_db = -12.8
 autoplay = true
 
 [connection signal="music_mute" from="World" to="." method="_on_world_music_mute"]

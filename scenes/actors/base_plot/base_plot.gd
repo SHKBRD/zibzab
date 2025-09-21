@@ -100,10 +100,10 @@ func focus() -> void:
 		%PurchasePicker.enable_options()
 	elif availabilityState == Availability.BOUGHT:
 		PlotSpace.focusPlot = self
-		show_plot_outline()
-		%PlotStatView.show()
-		plot_stat_view_update()
-		%PlotOutline.set_surface_override_material(0, plotBlackOutline)
+		
+		
+		
+		
 		
 		var selectedZibs: Array = get_tree().get_nodes_in_group("SelectedZibs")
 		
@@ -111,7 +111,10 @@ func focus() -> void:
 		for existingZib: Zib in %BuildingDevelopment.get_child(0).assignedZibs:
 			if existingZib != null: plotZibCount += 1
 		if selectedZibs.is_empty():
-			pass
+			show_plot_outline()
+			plot_stat_view_update()
+			%PlotStatView.show()
+			%PlotOutline.set_surface_override_material(0, plotBlackOutline)
 		elif (%BuildingDevelopment.get_child(0).zibWorkingCapacity - plotZibCount) - selectedZibs.size() < 0:
 			
 			WorldSpace.world.make_fail_noise()

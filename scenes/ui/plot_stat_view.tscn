@@ -32,6 +32,7 @@ text = "[i]Assigned Zibs: 0/8[/i]"
 
 [node name="PlotDescription" parent="PlotStatView/VBox" instance=ExtResource("3_074fc")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "[i]This is the first source of Zib energy, which also stores all of the energy and zabs you own.[/i]"
 

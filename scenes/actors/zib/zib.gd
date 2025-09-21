@@ -146,6 +146,7 @@ func unsupercharge() -> void:
 	%ZibBodyOutline.show()
 	zibWorkEffective = normalZibWork
 	workLimit = chargedWorkLimit
+	workCompleted = min(workCompleted, normalworkLimit)
 
 func process_zib_state(delta: float) -> void:
 	match zibState:

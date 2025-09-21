@@ -17,7 +17,7 @@ orbitCenter = NodePath("ZibHolderPlace/ZibHolder/ZibHolderSpot")
 zibWorkingCapacity = 1
 workType = 2
 plotHUDTitle = "Zib Supercharger"
-plotHUDDescription = "Supercharges Zibs, making them work faster and longer for a limited time."
+plotHUDDescription = ""
 
 [node name="BatteryPads" parent="." index="0"]
 surface_material_override/2 = ExtResource("3_ia3w8")
