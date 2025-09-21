@@ -21,5 +21,8 @@ func get_zib_count() -> int:
 func add_zib(zib: Zib) -> void:
 	%Zibs.add_child(zib)
 
+func make_fail_noise() -> void:
+	pass
+
 func _process(delta: float) -> void:
 	print(Incrementals.zabs)

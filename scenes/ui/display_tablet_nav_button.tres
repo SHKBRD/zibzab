@@ -23,3 +23,6 @@ Button/font_sizes/font_size = 45
 Button/fonts/font = ExtResource("1_h1sm2")
 Button/styles/hover = SubResource("StyleBoxFlat_o5dno")
 Button/styles/normal = ExtResource("2_u5h1p")
+RichTextLabel/font_sizes/normal_font_size = 40
+RichTextLabel/fonts/normal_font = ExtResource("1_h1sm2")
+RichTextLabel/styles/normal = ExtResource("2_u5h1p")

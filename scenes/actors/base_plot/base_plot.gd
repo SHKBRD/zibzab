@@ -44,7 +44,8 @@ func _ready() -> void:
 #region plot upgrades
 func raise(type: Availability) -> void:
 	availabilityState = type
-	
+	if type == Availability.BUYABLE:
+		%Sprite3DMoney.show()
 	if type == Availability.BUYABLE or type == Availability.BOUGHT:
 		var buyableTween: Tween = get_tree().create_tween()
 		buyableTween.tween_property(self, "scale", Vector3(1, 1, 1), 0.5).set_trans(Tween.TRANS_CUBIC)
@@ -62,6 +63,7 @@ func raise(type: Availability) -> void:
 
 func develop(type: Development.DevelopmentType) -> void:
 	raise(Plot.Availability.BOUGHT)
+	%Sprite3DMoney.hide()
 	WorldSpace.buildingAmount += 1
 	var developmentNode: Development = Instantiate.scene(Development.devTypeClassNames[type])
 	spaceType = type
@@ -92,6 +94,7 @@ func focus() -> void:
 	
 	if availabilityState == Availability.BUYABLE:
 		%PurchasePicker.show()
+		%Sprite3DMoney.hide()
 		var focusTween: Tween = get_tree().create_tween()
 		focusTween.tween_property(%PurchasePicker, "scale", Vector3(1, 1, 1), 0.25).set_trans(Tween.TRANS_CUBIC)
 		%PurchasePicker.enable_options()
@@ -103,13 +106,15 @@ func focus() -> void:
 		%PlotOutline.set_surface_override_material(0, plotBlackOutline)
 		
 		var selectedZibs: Array = get_tree().get_nodes_in_group("SelectedZibs")
+		
 		var plotZibCount: int = 0
 		for existingZib: Zib in %BuildingDevelopment.get_child(0).assignedZibs:
 			if existingZib != null: plotZibCount += 1
 		if selectedZibs.is_empty():
 			pass
 		elif (%BuildingDevelopment.get_child(0).zibWorkingCapacity - plotZibCount) - selectedZibs.size() < 0:
-			pass
+			
+			WorldSpace.world.make_fail_noise()
 		else:
 			print("Zib Assignment")
 			for zib: Zib in selectedZibs:
@@ -122,6 +127,10 @@ func focus() -> void:
 func defocus() -> void:
 	hide_plot_outline()
 	%PlotStatView.hide()
+	if availabilityState == Availability.BUYABLE:
+		%Sprite3DMoney.show()
+	elif availabilityState == Availability.BOUGHT:
+		%Sprite3DMoney.hide()
 	if availabilityState == Availability.BUYABLE || availabilityState == Availability.BOUGHT:
 		var defocusTween: Tween = get_tree().create_tween()
 		defocusTween.tween_property(%PurchasePicker, "scale", Vector3(0.001, 0.001, 0.001), 0.25).set_trans(Tween.TRANS_CUBIC)

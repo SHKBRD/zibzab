@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0pwcd5lwmaml"]
+[gd_scene load_steps=8 format=3 uid="uid://b0pwcd5lwmaml"]
 
 [ext_resource type="Script" uid="uid://nhcv76f3tst0" path="res://scenes/ui/main_game_ui.gd" id="1_2lr7m"]
 [ext_resource type="PackedScene" uid="uid://bk2ypih11ec7u" path="res://scenes/ui/IncrementalScores.tscn" id="2_2lr7m"]
 [ext_resource type="Texture2D" uid="uid://djppdry148n3i" path="res://assets/ui/HowToPlaySelect.png" id="3_bb4rc"]
 [ext_resource type="Texture2D" uid="uid://d24wawhaq4xf6" path="res://assets/ui/HowToPlayUnselect.png" id="4_48pfk"]
 [ext_resource type="PackedScene" uid="uid://bsmbk2lut2m18" path="res://scenes/ui/display_tablet.tscn" id="5_48pfk"]
+[ext_resource type="Theme" uid="uid://c8n3bbe4vxx0c" path="res://scenes/ui/display_tablet_nav_button.tres" id="6_j2veb"]
+[ext_resource type="PackedScene" uid="uid://dbtru3eqfffww" path="res://scenes/ui/stopwatch.tscn" id="7_8fr4c"]
 
 [node name="MainGameUI" type="Control"]
 layout_mode = 3
@@ -36,4 +38,31 @@ visible = false
 z_index = 1
 layout_mode = 1
 
+[node name="FinishGameButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -8.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("6_j2veb")
+text = "Finish Game!
+"
+
+[node name="Stopwatch" parent="." instance=ExtResource("7_8fr4c")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_right = 0.0
+grow_horizontal = 0
+
 [connection signal="pressed" from="HowToPlayButton" to="." method="_on_how_to_play_button_pressed"]
+[connection signal="pressed" from="FinishGameButton" to="." method="_on_finish_game_button_pressed"]

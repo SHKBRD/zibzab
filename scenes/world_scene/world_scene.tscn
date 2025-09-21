@@ -51,13 +51,37 @@ script = ExtResource("2_mh22i")
 unique_name_in_owner = true
 
 [node name="Zib" parent="Zibs" instance=ExtResource("6_vol3y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.45374, 1.57708, -4.56712)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.45374, 1.57708, -5.5671196)
 
 [node name="Zib2" parent="Zibs" instance=ExtResource("6_vol3y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7215, 1.33999, 5.92096)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.7215, 1.33999, 4.9209595)
 
 [node name="Zib3" parent="Zibs" instance=ExtResource("6_vol3y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.76557, 0, 6.22804)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.23443, 0, 5.2280407)
 
 [node name="Zib4" parent="Zibs" instance=ExtResource("6_vol3y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.54072, 0, -3.84903)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.45928, 0, -4.8490295)
+
+[node name="Zib5" parent="Zibs" instance=ExtResource("6_vol3y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.792688, 0, -4.8490295)
+
+[node name="Zib6" parent="Zibs" instance=ExtResource("6_vol3y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.792688, 0, 0.69482994)
+
+[node name="Zib7" parent="Zibs" instance=ExtResource("6_vol3y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.54626, 1.57708, -4.5671196)
+
+[node name="Zib8" parent="Zibs" instance=ExtResource("6_vol3y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2785, 1.33999, 5.9209595)
+
+[node name="Zib9" parent="Zibs" instance=ExtResource("6_vol3y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.76557, 0, 6.2280407)
+
+[node name="Zib10" parent="Zibs" instance=ExtResource("6_vol3y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.54072, 0, -3.8490295)
+
+[node name="Zib11" parent="Zibs" instance=ExtResource("6_vol3y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.207312, 0, -3.8490295)
+
+[node name="Zib12" parent="Zibs" instance=ExtResource("6_vol3y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.207312, 0, 1.69483)

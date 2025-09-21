@@ -1,16 +1,27 @@
-[gd_scene load_steps=8 format=3 uid="uid://dogm3jw7h567q"]
+[gd_scene load_steps=11 format=3 uid="uid://dogm3jw7h567q"]
 
 [ext_resource type="PackedScene" uid="uid://b4hfbgv8y14gq" path="res://assets/plot_developments/BasePlot.blend" id="1_rrv6o"]
 [ext_resource type="Script" uid="uid://3h7s2jlc4f7r" path="res://scenes/actors/base_plot/base_plot.gd" id="2_oemfn"]
 [ext_resource type="PackedScene" uid="uid://b434msy1r6nt3" path="res://scenes/actors/base_plot/developpicker/purchase_picker.tscn" id="3_pfcvo"]
 [ext_resource type="Material" uid="uid://cocc5ouw71hc5" path="res://shaders/outlineshader.tres" id="4_7qukm"]
 [ext_resource type="PackedScene" uid="uid://c17inrixdwc2f" path="res://scenes/ui/plot_stat_view.tscn" id="5_h3pxj"]
+[ext_resource type="FontFile" uid="uid://dischhglabn81" path="res://assets/fonts/Montserrat/static/Montserrat-Black.ttf" id="6_w4511"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oemfn"]
 size = Vector3(16, 1.5, 16)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_7qukm"]
 viewport_path = NodePath("Sprite3D/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_h3pxj"]
+viewport_path = NodePath("Sprite3DMoney/SubViewportMoney")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_38wtw"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [node name="BasePlot" instance=ExtResource("1_rrv6o")]
 script = ExtResource("2_oemfn")
@@ -50,6 +61,40 @@ size = Vector2i(300, 512)
 [node name="PlotStatView" parent="Sprite3D/SubViewport" index="0" instance=ExtResource("5_h3pxj")]
 unique_name_in_owner = true
 visible = false
+
+[node name="Sprite3DMoney" type="Sprite3D" parent="." index="6"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6486688, 0)
+pixel_size = 0.08
+billboard = 1
+render_priority = 1
+texture = SubResource("ViewportTexture_h3pxj")
+
+[node name="SubViewportMoney" type="SubViewport" parent="Sprite3DMoney" index="0"]
+transparent_bg = true
+size = Vector2i(64, 64)
+
+[node name="PanelContainer" type="PanelContainer" parent="Sprite3DMoney/SubViewportMoney" index="0"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_38wtw")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Sprite3DMoney/SubViewportMoney/PanelContainer" index="0"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_w4511")
+theme_override_font_sizes/normal_font_size = 30
+text = "$"
+fit_content = true
+horizontal_alignment = 1
 
 [connection signal="input_event" from="PlotCollision" to="." method="_on_plot_collision_input_event"]
 [connection signal="mouse_entered" from="PlotCollision" to="." method="_on_plot_collision_mouse_entered"]

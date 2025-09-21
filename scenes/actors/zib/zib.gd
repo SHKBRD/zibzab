@@ -92,7 +92,8 @@ func work_orbit(delta: float) -> void:
 	global_position = global_position.lerp(workTarget.global_position, workConnect)
 
 func work_wander(delta: float) -> void:
-	if workTarget == null or workTarget.global_position == global_position:
+	var unitDistance: Vector3 = (assignedPlot.global_position - global_position).abs()
+	if workTarget == null or workTarget.global_position == global_position or (unitDistance.x > 6 or unitDistance.z > 6):
 		if workTarget: workTarget.queue_free()
 		
 		# wander location generation

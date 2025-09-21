@@ -25,8 +25,11 @@ func populate_plots():
 	leftPlot.develop(Development.DevelopmentType.CORRAL)
 	rightPlot.develop(Development.DevelopmentType.CORRAL)
 	
-	for zib: Zib in %Zibs.get_children():
-		centerPlot.attempt_transfer_zib_to_this_plot(zib)
+	for zibInt: int in %Zibs.get_child_count():
+		if zibInt < 6:
+			leftPlot.attempt_transfer_zib_to_this_plot(%Zibs.get_child(zibInt))
+		else:
+			rightPlot.attempt_transfer_zib_to_this_plot(%Zibs.get_child(zibInt))
 
 
 func _ready() -> void:
