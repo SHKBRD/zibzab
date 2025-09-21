@@ -75,6 +75,8 @@ func move_to_plot(plot: Plot) -> void:
 	assignedPlot = plot
 	zibState = ZibState.PLOT_HEADING
 	moving_to_plot.emit(plot, self)
+	if plot.get_development() is ChargerDevelopment:
+		plot.get_development().link_zib_to_charger(self)
 
 
 #region Zib Work

@@ -2,14 +2,14 @@ extends Node
 
 signal goal_reached()
 
-var energyGoal: float = 500_000
+var energyGoal: float = 125_000
 var goalReached: bool = false
 
 var energy: float = 0
 var zabs: float = 0
 
 var perZibMultCostIncrease: float = 1.5
-var perBuildingMultCostIncrease: float = 1.5
+var perBuildingMultCostIncrease: float = 1.25
 
 var baseBuildingEnergyCost: float = 5000
 var baseBuildingZabCost: float = 250

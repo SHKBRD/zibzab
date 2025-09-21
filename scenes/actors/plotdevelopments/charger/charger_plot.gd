@@ -15,3 +15,6 @@ func on_zib_work_completed(amount: int, zib: Zib) -> bool:
 	for timesWorkApplied: int in amount:
 		%ZibHolder.make_progress()
 	return false
+
+func link_zib_to_charger(zib: Zib) -> void:
+	zib.moving_to_plot.connect(%ZibHolder.on_zib_leaving_holder)
