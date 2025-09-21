@@ -13,6 +13,7 @@ config_version=5
 config/name="ZibZab"
 run/main_scene="uid://huaabf3njsc1"
 config/features=PackedStringArray("4.5", "Forward Plus")
+boot_splash/image="uid://bur6dq60vby2v"
 config/icon="res://icon.svg"
 
 [autoload]

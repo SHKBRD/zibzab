@@ -79,7 +79,7 @@ layout_mode = 2
 [node name="RichTextLabel" parent="TabletDisplay/ScreenContainer/TabletContents/Page1/HBoxContainer" index="0"]
 text = "[b][i]Page 1 - Introduction[/i][/b]
 
-Welcome to ZibZab! You goal is to obtain 1,000,000 energy so the Zibs can have enough energy for their trip to the moon. Try to reach this goal as fast as possible! 
+Welcome to ZibZab! You goal is to obtain 500,000 energy so the Zibs can have enough energy for their trip to the moon. Try to reach this goal as fast as possible! 
 
 You will achieve this by managing your Zibs across the plots that you build."
 
