@@ -7,7 +7,7 @@ void vertex() {
 
 void fragment() {
 	ALPHA = 0.75;
-	ALBEDO = vec3(0.0, 0.75 , 0.750);
+	ALBEDO = vec3(0.0, 1.0 , 1.0);
 }
 
 //void light() {

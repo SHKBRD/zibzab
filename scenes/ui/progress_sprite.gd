@@ -6,3 +6,7 @@ func _ready() -> void:
 
 func update_progress(percent: float) -> void:
 	%ProgressBar.value = percent
+	if percent == 0 or percent == 1:
+		hide()
+	else:
+		show()

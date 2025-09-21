@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgmeaciitw0o1"]
+
+[ext_resource type="Texture2D" uid="uid://y8t8g1lyjmfd" path="res://assets/images/ZibZabLogo.png" id="1_ny3vc"]
+[ext_resource type="Script" uid="uid://nmumk7yxgevt" path="res://scenes/ui/title_screen.gd" id="1_xnmwc"]
+[ext_resource type="Theme" uid="uid://c8n3bbe4vxx0c" path="res://scenes/ui/display_tablet_nav_button.tres" id="3_j2lur"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xnmwc")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_ny3vc")
+
+[node name="InvisButton" type="Button" parent="CenterContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme = ExtResource("3_j2lur")
+disabled = true
+button_mask = 0
+text = "Start Game"
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_j2lur")
+text = "Start Game"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

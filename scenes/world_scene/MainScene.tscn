@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://huaabf3njsc1"]
+
+[ext_resource type="Script" uid="uid://b1o33oycnsoev" path="res://scenes/world_scene/main_scene.gd" id="1_2a66l"]
+[ext_resource type="PackedScene" uid="uid://c6b2yfgwdfgvv" path="res://scenes/world_scene/world_scene.tscn" id="1_f62hy"]
+[ext_resource type="PackedScene" uid="uid://cgmeaciitw0o1" path="res://scenes/ui/TitleScreen.tscn" id="3_ej820"]
+[ext_resource type="AudioStream" uid="uid://dcur3tid231ru" path="res://assets/audio/GUI_Sound_Effects_by_Lokif/click.wav" id="4_ej820"]
+[ext_resource type="AudioStream" uid="uid://di4eje3rti32f" path="res://assets/audio/song.wav" id="5_davt3"]
+
+[node name="MainScene" type="Node"]
+process_mode = 3
+script = ExtResource("1_2a66l")
+
+[node name="World" parent="." instance=ExtResource("1_f62hy")]
+unique_name_in_owner = true
+process_mode = 1
+
+[node name="TitleScreen" parent="." instance=ExtResource("3_ej820")]
+unique_name_in_owner = true
+process_mode = 3
+
+[node name="ClickAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+stream = ExtResource("4_ej820")
+
+[node name="SongAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+stream = ExtResource("5_davt3")
+volume_db = -3.445
+autoplay = true
+
+[connection signal="music_mute" from="World" to="." method="_on_world_music_mute"]
+[connection signal="game_started" from="TitleScreen" to="." method="_on_title_screen_game_started"]
+[connection signal="finished" from="SongAudioStreamPlayer" to="." method="_on_song_audio_stream_player_finished"]

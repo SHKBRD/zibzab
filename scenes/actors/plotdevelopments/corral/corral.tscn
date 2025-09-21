@@ -6,7 +6,7 @@
 
 [node name="CorralIsland" instance=ExtResource("1_n42nx")]
 script = ExtResource("2_ejp6b")
-zibWorkingCapacity = 6
+zibWorkingCapacity = 8
 workType = 3
 plotHUDTitle = "Zib Corral"
 plotHUDDescription = "A place for your Zibs to regain their energy."

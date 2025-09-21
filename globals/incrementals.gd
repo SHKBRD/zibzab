@@ -2,7 +2,7 @@ extends Node
 
 signal goal_reached()
 
-var energyGoal: float = 1_000_000
+var energyGoal: float = 500_000
 var goalReached: bool = false
 
 var energy: float = 0
@@ -14,7 +14,7 @@ var perBuildingMultCostIncrease: float = 1.5
 var baseBuildingEnergyCost: float = 5000
 var baseBuildingZabCost: float = 250
 var zibHolderBaseEnergyCost: float = 1000
-var zibHolderBaseZabCost: float = 100
+var zibHolderBaseZabCost: float = 50
 
 var energyMults: Dictionary[String, float] = {
 	"baseMult": 1.0
@@ -54,13 +54,13 @@ func get_new_building_zab_cost() -> float:
 
 func get_zib_holder_energy_build_price() -> float:
 	var energyCost: float = zibHolderBaseEnergyCost
-	energyCost *= WorldSpace.world.get_zib_count()
+	energyCost *= WorldSpace.world.get_zib_count() / float(2)
 	
 	return energyCost
 
 func get_zib_holder_zab_build_price() -> float:
 	var zabCost: float = zibHolderBaseZabCost
-	zabCost *= WorldSpace.world.get_zib_amount_cost_mult()
+	zabCost *= WorldSpace.world.get_zib_count() / float(4)
 	
 	return zabCost
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://c6b2yfgwdfgvv"]
+[gd_scene load_steps=12 format=3 uid="uid://c6b2yfgwdfgvv"]
 
 [ext_resource type="Script" uid="uid://ci235s1ttho21" path="res://scenes/world_scene/world_scene.gd" id="1_cih2l"]
 [ext_resource type="Material" uid="uid://xnpqndxhsn5" path="res://scenes/world_scene/shaders/water.tres" id="1_wdn8f"]
+[ext_resource type="AudioStream" uid="uid://d0rbx4cyhvvf4" path="res://assets/audio/GUI_Sound_Effects_by_Lokif/negative_2.wav" id="2_1gsct"]
 [ext_resource type="Script" uid="uid://dtq3gs0bkn117" path="res://scenes/world_scene/scripts/world_camera.gd" id="2_l4v6i"]
 [ext_resource type="Script" uid="uid://rwqr8dol12av" path="res://scenes/world_scene/scripts/plot_setup.gd" id="2_mh22i"]
 [ext_resource type="PackedScene" uid="uid://b0pwcd5lwmaml" path="res://scenes/ui/main_game_ui.tscn" id="2_sgpo1"]
@@ -29,7 +30,13 @@ glow_enabled = true
 [node name="World" type="Node3D"]
 script = ExtResource("1_cih2l")
 
+[node name="ErrorAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_1gsct")
+
 [node name="MainGameUI" parent="." instance=ExtResource("2_sgpo1")]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_l4v6i")
@@ -51,7 +58,7 @@ script = ExtResource("2_mh22i")
 unique_name_in_owner = true
 
 [node name="Zib" parent="Zibs" instance=ExtResource("6_vol3y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.45374, 1.57708, -5.5671196)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.45374, 1.57708, 1.671711)
 
 [node name="Zib2" parent="Zibs" instance=ExtResource("6_vol3y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.7215, 1.33999, 4.9209595)
@@ -60,28 +67,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.7215, 1.33999, 4.9209595)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.23443, 0, 5.2280407)
 
 [node name="Zib4" parent="Zibs" instance=ExtResource("6_vol3y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.45928, 0, -4.8490295)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.45928, 0, 2.389801)
 
 [node name="Zib5" parent="Zibs" instance=ExtResource("6_vol3y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.792688, 0, -4.8490295)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.792688, 0, 2.389801)
 
 [node name="Zib6" parent="Zibs" instance=ExtResource("6_vol3y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.792688, 0, 0.69482994)
 
 [node name="Zib7" parent="Zibs" instance=ExtResource("6_vol3y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.54626, 1.57708, -4.5671196)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.54626, 1.57708, 2.671711)
 
 [node name="Zib8" parent="Zibs" instance=ExtResource("6_vol3y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2785, 1.33999, 5.9209595)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.416235, 1.33999, 5.9209595)
 
 [node name="Zib9" parent="Zibs" instance=ExtResource("6_vol3y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.76557, 0, 6.2280407)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.603228, 0, 6.2280407)
 
 [node name="Zib10" parent="Zibs" instance=ExtResource("6_vol3y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.54072, 0, -3.8490295)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.378378, 0, 3.389801)
 
 [node name="Zib11" parent="Zibs" instance=ExtResource("6_vol3y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.207312, 0, -3.8490295)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.345047, 0, 3.389801)
 
 [node name="Zib12" parent="Zibs" instance=ExtResource("6_vol3y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.207312, 0, 1.69483)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.345047, 0, 1.69483)
+
+[connection signal="music_mute" from="MainGameUI" to="." method="_on_main_game_ui_music_mute"]

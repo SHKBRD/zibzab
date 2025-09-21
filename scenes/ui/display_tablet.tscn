@@ -120,7 +120,7 @@ layout_mode = 2
 text = "[b][i]Page 4 - Main Plot[/i][/b]
 
 This plot allows Zibs to produce Energy and Zabs. 
-
+Assigning more Zibs to this plot boosts the production each individual Zib performs.
 Up to 8 Zibs can be assigned to this Plot."
 
 [node name="TextureRect" parent="TabletDisplay/ScreenContainer/TabletContents/Page4/HBoxContainer" index="1"]
@@ -134,6 +134,7 @@ layout_mode = 2
 text = "[b][i]Page 5 - Resource Generator[/i][/b]
 
 This plot allows Zibs to produce Energy or Zabs. Click the switch on the machine to switch between Energy or Zab production.
+Assigning more Zibs to this plot boosts the production each individual Zib performs.
 
 Up to 4 Zibs can be assigned to this Plot."
 
@@ -149,7 +150,7 @@ text = "[b][i]Page 6 - Zib Corall[/i][/b]
 
 This plot allows Zibs to rest and become active again.
 
-Up to 6 Zibs can be assigned to this Plot."
+Up to 8 Zibs can be assigned to this Plot."
 
 [node name="TextureRect" parent="TabletDisplay/ScreenContainer/TabletContents/Page6/HBoxContainer" index="1"]
 texture = ExtResource("7_xji32")

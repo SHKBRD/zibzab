@@ -7,7 +7,7 @@ signal work_completed(amount: int)
 signal moving_to_plot(plot: Plot, zib: Zib)
 
 @export var maxFlightSpeed: float = 9
-@export var maxWanderSpeed: float = 5
+@export var maxWanderSpeed: float = 2.5
 
 var zibFaceMat: Material = preload("res://scenes/actors/zib/material/zibface.tres")
 var zibFaceTiredMat: Material = preload("res://scenes/actors/zib/material/zibfacetired.tres")

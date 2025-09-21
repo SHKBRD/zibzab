@@ -26,9 +26,12 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -224.0
-offset_right = 313.0
+offset_left = 2.9999998
+offset_top = -154.0
+offset_right = 316.0
+offset_bottom = 70.0
 grow_vertical = 0
+scale = Vector2(0.68, 0.68)
 texture_normal = ExtResource("3_bb4rc")
 texture_hover = ExtResource("4_48pfk")
 
@@ -39,6 +42,8 @@ z_index = 1
 layout_mode = 1
 
 [node name="FinishGameButton" type="Button" parent="."]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -64,5 +69,44 @@ offset_left = -40.0
 offset_right = 0.0
 grow_horizontal = 0
 
+[node name="WinScreen" type="Button" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -550.0
+offset_top = -43.0
+offset_right = 550.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_j2veb")
+text = "Hooray! You earned enough energy to get the Zibs to the moon!
+Though... it looks like the Zibs don't want to go without you. 
+Unfortunately, you don't fit in the Zib-sized seat in their
+space ship, so you politely decline before returning home.
+(You can continue playing by clicking this box.)"
+
+[node name="MusicButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -148.0
+offset_top = -86.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("6_j2veb")
+text = "Music: "
+
 [connection signal="pressed" from="HowToPlayButton" to="." method="_on_how_to_play_button_pressed"]
 [connection signal="pressed" from="FinishGameButton" to="." method="_on_finish_game_button_pressed"]
+[connection signal="pressed" from="WinScreen" to="." method="_on_finish_game_button_pressed"]
+[connection signal="pressed" from="MusicButton" to="." method="_on_music_button_pressed"]
